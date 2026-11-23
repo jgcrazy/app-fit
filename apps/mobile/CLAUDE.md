@@ -97,6 +97,9 @@ erro com próximo passo, número formatado.
   vezes por tela**. Texto sobre ele é `content-on-secondary` (navy).
 - Tab bar: no máximo 4 itens, `surface-deep`, ativo em `content-accent`, inativo
   em `content-secondary`. **O rótulo nunca desaparece.**
+  **Decisão (nov/2026): fica a tab bar NATIVA** (`NativeTabs`, `src/components/app-tabs.tsx`).
+  Ela não desenha o indicador `border-accent` de 3px do BottomTabBar do Ensign; o
+  ativo é marcado só pela cor do ícone e do rótulo. Não recrie a barra em JS.
 - AppHeader: 56px, `surface-brand`, título `text-h2` + `text-content-on-brand`.
 - Elevação no escuro é **passo de superfície + borda de 1px**, não sombra.
 - `placeholderTextColor={cor['content-muted']}` — passa 4,5:1 sobre `surface-input`.
