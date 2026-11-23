@@ -47,6 +47,7 @@ npx expo start
 2. [`docs/licencas-dados.md`](docs/licencas-dados.md) — **nenhuma base externa entra em produção sem passar por aqui**
 3. [`docs/linguagem.md`](docs/linguagem.md) — regras de redação; o que o app nunca escreve
 4. [`docs/roadmap.md`](docs/roadmap.md) — escopo do v1
+5. [`docs/especificacao.md`](docs/especificacao.md) — **contrato de implementação de todos os módulos**: endpoints, regras e testes exigidos
 
 ## Regras não negociáveis do código
 
