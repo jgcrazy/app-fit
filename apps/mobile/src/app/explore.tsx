@@ -6,6 +6,7 @@ import { ExternalLink } from '@/components/external-link';
 import { Collapsible } from '@/components/ui/collapsible';
 import { paddingInferiorTela, px } from '@/shared/theme/layout';
 import { escalas } from '@/shared/theme/tokens';
+import { AppHeader } from '@/shared/ui/AppHeader';
 import { Badge } from '@/shared/ui/Badge';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
@@ -151,6 +152,14 @@ export default function ExplorarScreen() {
               cta="Registrar treino"
               onCta={() => {}}
             />
+          </Collapsible>
+
+          <Collapsible titulo="Componentes: AppHeader">
+            {/* No catálogo o header aparece dentro do card; numa tela real ele fica no topo e cobre a barra de status. */}
+            <View className="gap-3 overflow-hidden rounded-card">
+              <AppHeader title="Início" greeting="Boa noite, Ana" actions={[{ icon: 'bell', label: 'Notificações', onPress: () => {} }]} />
+              <AppHeader title="Treino A — Peito e tríceps" onBack={() => {}} />
+            </View>
           </Collapsible>
 
           <Collapsible titulo="Movimento">

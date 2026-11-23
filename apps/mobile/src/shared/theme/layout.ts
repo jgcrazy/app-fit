@@ -11,6 +11,9 @@ export const px = (valor: string) => parseFloat(valor);
  */
 export const ALTURA_TAB_BAR = Platform.select({ ios: 50, android: 80 }) ?? 0;
 
+/** Altura do AppHeader (README do AppHeader no Ensign): 56px, sem token próprio. */
+export const ALTURA_APP_HEADER = 56;
+
 /**
  * Espessura de cada anel do foco, da receita do Ensign (04-movimento):
  * 2px de border-focus por dentro + 2px de border-focus-outline por fora.
