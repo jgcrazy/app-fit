@@ -5,6 +5,7 @@ import { ExternalLink } from '@/components/external-link';
 import { Collapsible } from '@/components/ui/collapsible';
 import { paddingInferiorTela, px } from '@/shared/theme/layout';
 import { escalas } from '@/shared/theme/tokens';
+import { Badge } from '@/shared/ui/Badge';
 import { Button } from '@/shared/ui/Button';
 import { IconButton } from '@/shared/ui/IconButton';
 
@@ -86,6 +87,16 @@ export default function ExplorarScreen() {
 
           <Collapsible titulo="Componentes: Button e IconButton">
             <CatalogoButton />
+          </Collapsible>
+
+          <Collapsible titulo="Componentes: Badge">
+            <View className="flex-row flex-wrap gap-2">
+              <Badge tone="active">Concluído</Badge>
+              <Badge tone="pending">Em andamento</Badge>
+              <Badge tone="canceled">Pulado</Badge>
+              <Badge tone="neutral" />
+              <Badge tone="active" dot={false} />
+            </View>
           </Collapsible>
 
           <Collapsible titulo="Movimento">
