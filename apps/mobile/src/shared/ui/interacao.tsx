@@ -37,6 +37,7 @@ export function useInteracao() {
 const RAIO = {
   button: { interno: 'absolute rounded-button border-border-focus', externo: 'absolute rounded-button border-border-focus-outline' },
   control: { interno: 'absolute rounded-control border-border-focus', externo: 'absolute rounded-control border-border-focus-outline' },
+  card: { interno: 'absolute rounded-card border-border-focus', externo: 'absolute rounded-card border-border-focus-outline' },
 };
 
 /** Dois anéis: Sunflare por dentro, contorno escuro por fora. Foco não anima. */
