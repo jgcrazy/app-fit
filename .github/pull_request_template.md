@@ -23,6 +23,7 @@
 - [ ] Testes unitários cobrindo casos de borda
 - [ ] Migration reversível, ou expand/contract documentado
 - [ ] Nenhum dado de base externa sem `cleared_for_production`
+- [ ] Strings de usuário seguem `docs/linguagem.md` (sem prescrição, sem promessa de resultado)
 - [ ] Documentação / ADR atualizada se houver decisão arquitetural
 
 ## Como testar

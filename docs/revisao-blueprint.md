@@ -30,7 +30,7 @@ licenciamento e segurança clínica.
 |---|---|
 | Ajuste calórico automático | Removido o automatismo, mantida a matemática — [ADR 0006](adr/0006-calculadora-sugere-nao-aplica.md) |
 | Escopo do v1 | Reduzido; nutrição foi para v2 — [roadmap](roadmap.md) |
-| Bases externas | Auditadas; TACO bloqueada, TheMealDB descartada — [licenças](licencas-dados.md) |
+| Bases externas | Auditadas; TACO e TheMealDB descartadas — [licenças](licencas-dados.md) |
 | Stack | Laravel + Expo/RN, não Node nem Flutter — [ADR 0001](adr/0001-stack.md) |
 | Rollback | Health check não é rollback; deploy por troca de tag — [ADR 0007](adr/0007-deploy-e-rollback.md) |
 | `nutrition_targets` | Versionada, nunca sobrescrita — [ADR 0004](adr/0004-metas-versionadas-snapshot-e-fuso.md) |
@@ -61,8 +61,12 @@ Pontos que não estavam no documento e viram incêndio em produção:
 
 ## Pendências antes do lançamento
 
-- [ ] Parecer jurídico sobre linguagem do app vs. prescrição regulamentada
-- [ ] Autorização formal do NEPA/Unicamp para a TACO, ou migração para POF/IBGE
+- [ ] Parecer jurídico sobre a redação real das telas vs. prescrição regulamentada
+      (posicionamento definido em [ADR 0008](adr/0008-posicionamento-ferramenta-educativa.md);
+      o parecer continua necessário, principalmente na tela que exibe a meta calórica)
+- [ ] Escolher a fonte de alimentos naturais que substitui a TACO — ver
+      [licenças](licencas-dados.md). Bloqueia o início da v2, não o v1.
+- [ ] Confirmar termos de uso das tabelas de composição da POF/IBGE
 - [ ] Auditoria de licença por registro dos exercícios importados
 - [ ] Jornada do usuário e protótipos de tela
 - [ ] Modelo de monetização com projeção de aquisição, churn e conversão

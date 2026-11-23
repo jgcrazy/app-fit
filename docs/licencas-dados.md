@@ -15,7 +15,8 @@ parecer jurídico**.
 |---|---|---|---|---|
 | Open Food Facts | ODbL 1.0 (dados) / CC-BY-SA (imagens) | sim, com condições | **sim** | ⚠️ exige isolamento |
 | wger | CC variável **por registro** | depende do registro | depende | ⚠️ exige licença por linha |
-| TACO (NEPA/Unicamp) | não há licença aberta explícita | **indefinido** | — | ⛔ bloqueado |
+| TACO (NEPA/Unicamp) | não há licença aberta explícita | **indefinido** | — | ⛔ **descartada por decisão de produto** |
+| POF/IBGE | produção estatística oficial | a confirmar | — | 🔎 candidata a substituir a TACO |
 | TheMealDB | chave de teste para dev/pessoal; produção exige chave de supporter | sim, com atribuição | não | ⛔ descartado por escopo |
 | Conteúdo próprio | proprietário | sim | não | ✅ preferencial |
 
@@ -55,17 +56,36 @@ exercício, então `exercises` carrega `license_code`, `license_author` e
 Nota: a base nutricional do próprio wger vem do Open Food Facts. As duas fontes
 não são independentes nessa parte.
 
-## TACO — bloqueado até resposta formal
+## TACO — descartada
 
-Não foi localizada licença pública explícita de redistribuição comercial. É
-publicação do NEPA/Unicamp, e disponibilidade em PDF/CSV não constitui licença.
+**Decisão de produto (2026-11-23): a TACO não será usada.** Não foi localizada
+licença pública explícita de redistribuição comercial, e a opção foi não
+depender de uma autorização que pode não vir — em vez de construir em cima dela
+e esperar.
 
-**Ações:**
-1. Solicitar autorização de uso comercial por escrito ao NEPA/Unicamp.
-2. Em paralelo, avaliar as tabelas da **POF/IBGE** como alternativa — produção
-   estatística oficial tem situação mais confortável para redistribuição.
+`data_sources` mantém o registro com `cleared_for_production = false` e nota da
+decisão, para que ninguém reabra a questão por esquecimento.
 
-Até uma das duas se resolver, `cleared_for_production` permanece `false`.
+### Consequência: há um buraco a preencher
+
+A TACO era a melhor fonte conhecida de **alimentos naturais brasileiros** —
+arroz cozido, feijão carioca, farinha de mandioca. O Open Food Facts é forte em
+**produto embalado com código de barras** e fraco justamente nesse terreno.
+Descartar a TACO não resolve a base de alimentos: estreita as saídas a duas.
+
+| Caminho | A favor | Contra |
+|---|---|---|
+| **POF/IBGE** | produção estatística oficial, situação de redistribuição mais confortável | menos itens que a TACO, precisa de curadoria e tradução de nomenclatura |
+| **Base própria curada** | sem amarra de licença, vira ativo defensável do produto | esforço editorial real: centenas de itens a cadastrar e revisar |
+
+Recomendação: **POF/IBGE como semente + curadoria própria por cima**, com a
+tabela própria crescendo a partir do que os usuários mais buscam. Nutrição é v2
+([roadmap](roadmap.md)), então há tempo — mas a decisão precisa de um
+substituto escolhido antes de a v2 começar, não durante.
+
+Próximo passo concreto: confirmar os termos de uso das tabelas de composição de
+alimentos da POF/IBGE antes de assumir que estão liberadas. "Dado de governo"
+não é automaticamente "dado livre para uso comercial".
 
 ## TheMealDB — descartado
 

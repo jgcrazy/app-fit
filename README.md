@@ -45,16 +45,19 @@ npx expo start
 
 1. [`docs/revisao-blueprint.md`](docs/revisao-blueprint.md) — o que mudou em relação ao blueprint original e por quê
 2. [`docs/licencas-dados.md`](docs/licencas-dados.md) — **nenhuma base externa entra em produção sem passar por aqui**
-3. [`docs/roadmap.md`](docs/roadmap.md) — escopo do v1
+3. [`docs/linguagem.md`](docs/linguagem.md) — regras de redação; o que o app nunca escreve
+4. [`docs/roadmap.md`](docs/roadmap.md) — escopo do v1
 
 ## Regras não negociáveis do código
 
+- **Ferramenta educativa, não prescritiva.** Todo número sai acompanhado da fórmula e das entradas que o geraram. Redação segue [`docs/linguagem.md`](docs/linguagem.md).
 - **O app sugere, o usuário aceita.** Nenhuma meta calórica entra em vigor sem `nutrition_targets.accepted_by_user_at`.
 - **Perfil de saúde nunca atrás de paywall.** Alergias, restrições e limitações são filtro de segurança.
 - **Prescrição ≠ execução.** `workout_day_exercises` é o planejado, `workout_set_logs` é o realizado. Nunca sobrescreva um com o outro.
 - **Todo log vindo do app carrega `client_uuid`.** Sem chave de idempotência o retry da fila offline duplica registro.
 - **Data é no fuso do usuário.** Use `logged_on` / `performed_on`, nunca derive o dia de UTC no servidor.
 - **Dado importado não se mistura com dado próprio na mesma linha.** Ver ADR 0003.
+- **Fonte externa só com `cleared_for_production`.** Hoje só o conteúdo próprio está liberado — `DataSourceGuardTest` falha se isso mudar sem decisão registrada.
 
 ## Governança
 

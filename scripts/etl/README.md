@@ -24,5 +24,5 @@
 |---|---|---|
 | wger (exercícios) | — | aguardando auditoria de licença por registro |
 | Open Food Facts | — | aguardando decisão sobre isolamento ODbL |
-| TACO | — | **bloqueado**: sem licença explícita de uso comercial |
-| POF/IBGE | — | avaliar como alternativa à TACO |
+| TACO | — | **descartada** por decisão de produto (ADR 0008 / licencas-dados.md) |
+| POF/IBGE | — | candidata a substituir a TACO; confirmar termos de uso |
