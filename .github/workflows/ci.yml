@@ -106,10 +106,13 @@ jobs:
           CACHE_STORE: redis
         run: php artisan test
 
+  # O nome dos jobs é o que a proteção de branch exige: não renomeie sem
+  # atualizar as regras de main e develop.
   mobile:
-    name: Mobile — typecheck e lint
+    name: Mobile — testes, typecheck e lint
     runs-on: ubuntu-latest
-    if: hashFiles('apps/mobile/package-lock.json') != ''
+    # Sem `if: hashFiles(...)` aqui: hashFiles não existe no `if` de job, e isso
+    # invalidava o workflow inteiro (nenhum job rodava). Ver #3.
 
     defaults:
       run:
@@ -131,5 +134,32 @@ jobs:
         working-directory: .
         run: npm run ds:ci
 
-      - run: npx tsc --noEmit
-      - run: npm run lint --if-present
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Testes
+        run: npm test -- --ci
+
+  commits:
+    name: Commits — padrão e issue
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Todo commit do PR: Conventional Commits em português, citando a issue (#N).
+      - name: Mensagens de commit
+        run: |
+          git log --format=%H "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" --no-merges |
+            while read -r sha; do
+              git log -1 --format=%B "$sha" > /tmp/msg
+              node scripts/check-commit-msg.mjs /tmp/msg || { echo "Commit ${sha:0:7} fora do padrão"; exit 1; }
+            done
+      - name: PR ligado a uma issue
+        env:
+          CORPO: ${{ github.event.pull_request.body }}
+        run: |
+          echo "$CORPO" | grep -Eiq '(closes|fixes|resolves|refs) #[0-9]+' ||
+            { echo 'O PR precisa citar a issue: "Closes #N" (ou "Refs #N").'; exit 1; }

@@ -8,6 +8,12 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
+
+# Mesmo motivo do staging: publicar no GHCR exige packages: write. Ver #4.
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

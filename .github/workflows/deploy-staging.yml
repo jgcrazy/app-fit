@@ -8,6 +8,12 @@ concurrency:
   group: deploy-staging
   cancel-in-progress: false
 
+# Sem packages: write o GITHUB_TOKEN não publica no GHCR ("installation not
+# allowed to Create organization package"). Ver #4.
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
