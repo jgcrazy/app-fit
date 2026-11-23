@@ -21,6 +21,19 @@ function contraste(a: string, b: string) {
 
 const par = (texto: TokenCor, fundo: TokenCor) => contraste(cor[texto], cor[fundo]);
 
+/** Mistura uma cor com alfa ("#RRGGBBAA") sobre um fundo opaco: a cor que o olho vê. */
+function sobre(frente: string, fundo: string) {
+  const canal = (hex: string, i: number) => parseInt(hex.slice(i, i + 2), 16);
+  const alfa = frente.length === 9 ? canal(frente, 7) / 255 : 1;
+  return (
+    '#' +
+    [1, 3, 5]
+      .map((i) => Math.round(canal(frente, i) * alfa + canal(fundo, i) * (1 - alfa)))
+      .map((v) => v.toString(16).padStart(2, '0'))
+      .join('')
+  );
+}
+
 describe('contraste dos tokens do tema app', () => {
   test.each<[TokenCor, TokenCor]>([
     ['content-primary', 'surface-canvas'],
@@ -41,6 +54,16 @@ describe('contraste dos tokens do tema app', () => {
     ['border-focus', 'surface-canvas'],
   ])('borda %s sobre %s passa 3:1', (borda, fundo) => {
     expect(par(borda, fundo)).toBeGreaterThanOrEqual(3);
+  });
+
+  // Badge: o fundo do status é tingido (com alfa) e aparece sobre o canvas e sobre cards.
+  test.each(
+    (['active', 'pending', 'canceled', 'neutral'] as const).flatMap((tom) =>
+      (['surface-canvas', 'surface-raised'] as const).map((superficie) => [tom, superficie] as const),
+    ),
+  )('status %s legível sobre %s (4,5:1)', (tom, superficie) => {
+    const fundo = sobre(cor[`status-${tom}-bg`], cor[superficie]);
+    expect(contraste(cor[`status-${tom}-fg`], fundo)).toBeGreaterThanOrEqual(4.5);
   });
 
   test('texto do botão primário é navy, nunca branco', () => {
