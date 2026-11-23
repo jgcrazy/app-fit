@@ -57,7 +57,7 @@ return new class extends Migration
 
         Schema::create('food_enrichments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('food_id')->unique()->constrained()->cascadeOnDelete();
+            $table->foreignId('food_id')->unique()->constrained('foods')->cascadeOnDelete();
             $table->string('name_pt')->nullable();
             $table->string('common_portion_label')->nullable();
             $table->text('notes_pt')->nullable();
@@ -67,7 +67,7 @@ return new class extends Migration
 
         Schema::create('food_portions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('food_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('food_id')->constrained('foods')->cascadeOnDelete();
             $table->string('label', 64);        // "1 fatia", "1 colher de sopa"
             $table->decimal('grams', 7, 2);
             $table->boolean('is_default')->default(false);
@@ -93,7 +93,7 @@ return new class extends Migration
         Schema::create('recipe_ingredients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('recipe_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('food_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('food_id')->nullable()->constrained('foods')->nullOnDelete();
             $table->string('free_text')->nullable();
             $table->decimal('quantity', 7, 2)->nullable();
             $table->string('unit', 16)->nullable();
@@ -126,7 +126,7 @@ return new class extends Migration
         Schema::create('diet_plan_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('diet_plan_meal_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('food_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('food_id')->nullable()->constrained('foods')->nullOnDelete();
             $table->foreignId('recipe_id')->nullable()->constrained()->nullOnDelete();
             $table->decimal('quantity', 7, 2);
             $table->string('unit', 16)->default('g');
@@ -137,7 +137,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('client_uuid');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('food_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('food_id')->nullable()->constrained('foods')->nullOnDelete();
             $table->foreignId('recipe_id')->nullable()->constrained()->nullOnDelete();
 
             $table->date('logged_on');
@@ -167,7 +167,7 @@ return new class extends Migration
         Schema::create('shopping_list_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('food_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('food_id')->nullable()->constrained('foods')->nullOnDelete();
             $table->string('name');
             $table->string('category', 64)->nullable();
             $table->decimal('quantity', 7, 2)->nullable();

@@ -63,7 +63,23 @@ npx expo start
 ## Governança
 
 - `main` — produção, protegida, só recebe PR de `develop` ou `hotfix/*` com CI verde
-- `develop` — integração, deploy automático em staging
-- `feat/<modulo>-<descricao>` / `fix/<modulo>-<descricao>`
+- `develop` — integração, protegida (só PR com CI verde), deploy automático em staging
+- `feat|fix|docs|chore|ci/<modulo>-<descricao>`
 
-Commits em [Conventional Commits](https://www.conventionalcommits.org/).
+### Fluxo obrigatório
+
+1. **Issue primeiro.** Todo trabalho começa numa issue (templates em `.github/ISSUE_TEMPLATE`), com labels `tipo:*` e `area:*`.
+2. **Commit cita a issue**, em [Conventional Commits](https://www.conventionalcommits.org/): `feat(mobile): Button do Ensign (#7)`.
+3. **Push e PR para `develop`** com `Closes #N`. Nada fica só local.
+4. **CI verde para entrar:** API (Pint, migrations reversíveis, testes), Mobile (`ds:ci`, typecheck, lint, `npm test`) e Commits (padrão + issue).
+
+Hooks locais barram o commit antes do CI. Ative uma vez por clone:
+
+```bash
+npm install        # na raiz: configura core.hooksPath = .githooks
+```
+
+- `commit-msg` — recusa mensagem fora do padrão ou sem `#issue` (`scripts/check-commit-msg.mjs`)
+- `pre-commit` — lint do design system e typecheck do mobile
+
+Não pule com `--no-verify`: o CI roda as mesmas checagens.

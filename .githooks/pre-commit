@@ -1,0 +1,16 @@
+#!/bin/sh
+# Antes de cada commit: lint do design system e, se o commit mexe no mobile,
+# typecheck do app. Não pule com --no-verify: o CI roda o mesmo e barra o PR.
+set -e
+RAIZ="$(git rev-parse --show-toplevel)"
+
+node "$RAIZ/scripts/lint-design-system.mjs"
+
+if git diff --cached --name-only | grep -q '^apps/mobile/'; then
+  if [ -d "$RAIZ/apps/mobile/node_modules" ]; then
+    echo "pre-commit: typecheck do mobile..."
+    (cd "$RAIZ/apps/mobile" && npx --no-install tsc --noEmit)
+  else
+    echo "pre-commit: apps/mobile sem node_modules; rode npm ci lá para o typecheck local."
+  fi
+fi
