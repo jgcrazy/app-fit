@@ -2,8 +2,21 @@
 
 # Ensign — regras de UI (App · Expo + NativeWind)
 
-Brand book completo: design system **Ensign** (artifact do projeto). Resumo de
-instalação e manutenção: [`design-system/README.md`](../../design-system/README.md).
+Design system **Ensign**: https://claude.ai/artifact/STGHQPzyBZcSHoPdGfCdTk
+(leia com a ferramenta Artifact, `action: "read"`). Ordem de leitura:
+`project/README.md` → a seção do app (`project/06-app-expo-nativewind.md`) →
+`project/components/<Comp>/README.md` antes de implementar ou usar um componente.
+Resumo de instalação e manutenção no repo:
+[`design-system/README.md`](../../design-system/README.md).
+
+## Componentes: o artifact é a especificação, não o código
+
+O `components/bundle.js` do artifact é React **web** (DOM, React 18) e não roda
+no React Native. No app, cada componente é reescrito em RN em
+`src/shared/ui/<Comp>.tsx`, seguindo o README dele no artifact: mesma API
+(`index.d.ts`), mesmos tokens, mesmos estados. Componentes do app: Button,
+IconButton, Field, Badge, Card, ListCard, FeatureCard, AppHeader, BottomTabBar,
+Toast. KPICard, DataTable e Sidebar são do admin.
 
 ## Stack fechada — não proponha alternativas
 

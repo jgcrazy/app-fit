@@ -1,8 +1,18 @@
 # Ensign — design system do app-fit
 
 `tokens.json` é a fonte da verdade de cor, tipo, espaço, raio, sombra, movimento
-e tamanho. Ele é cópia exata do design system **Ensign** (artifact do projeto),
-onde ficam o brand book completo e as medições de contraste.
+e tamanho. Ele é cópia exata do design system **Ensign**:
+
+**https://claude.ai/artifact/STGHQPzyBZcSHoPdGfCdTk**
+
+Lá ficam o brand book (9 seções), as medições de contraste e os 11 componentes
+com README, preview nos dois temas e tipos (`components/index.d.ts`). O Claude
+Code lê o artifact direto; este repositório guarda só o `tokens.json` e o que é
+gerado dele. Os READMEs de componente **não** são copiados para cá, para não
+existirem duas versões.
+
+O `components/bundle.js` do artifact é React web (DOM). O admin pode usá-lo; o
+app reescreve cada componente em React Native seguindo o README dele.
 
 Dois temas: **`app`** (escuro, mobile) e **`admin`** (claro, web). Três cores no
 orçamento 60-30-10: Ensign Navy `#1B2340`, Champagne Satin `#D8CBB0`, Sunflare
@@ -46,6 +56,8 @@ build, o PR fica vermelho.
 Nunca no código do produto. Sempre nesta ordem:
 
 1. Mude primeiro no artifact do Ensign: nome, valor nos dois temas, nota de uso.
+   Para conferir se o repo está em dia, compare o sha256 do `tokens.json` daqui
+   com o `project/tokens.json` do artifact.
 2. **Meça o contraste** contra cada superfície que ele encontra — 4,5:1 para
    texto, 3:1 para borda funcional, anel de foco e ícone.
 3. Copie o `tokens.json` novo para cá.
