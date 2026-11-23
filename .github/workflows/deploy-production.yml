@@ -19,6 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     # Configurar "Required reviewers" em Settings > Environments.
     environment: production
+    # Sem servidor configurado, o deploy publica a imagem e para antes do SSH
+    # (secrets não podem ir direto num `if:`, por isso a variável). Ver #20.
+    env:
+      TEM_SERVIDOR: ${{ secrets.PROD_HOST != '' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +43,12 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Sem servidor de production
+        if: env.TEM_SERVIDOR != 'true'
+        run: echo "::notice::PROD_HOST não configurado. Imagem publicada no GHCR; deploy no servidor pulado (#20)."
+
       - name: Deploy com rollback automático
+        if: env.TEM_SERVIDOR == 'true'
         uses: appleboy/ssh-action@v1.0.3
         env:
           IMAGE: ghcr.io/${{ github.repository }}/api:prod-${{ github.sha }}
