@@ -5,6 +5,35 @@ import { ExternalLink } from '@/components/external-link';
 import { Collapsible } from '@/components/ui/collapsible';
 import { paddingInferiorTela, px } from '@/shared/theme/layout';
 import { escalas } from '@/shared/theme/tokens';
+import { Button } from '@/shared/ui/Button';
+
+/**
+ * Catálogo de desenvolvimento: mostra variantes lado a lado, então é a única
+ * tela onde mais de um primary aparece junto. Nas telas do produto, um por região.
+ */
+function CatalogoButton() {
+  return (
+    <View className="gap-4">
+      <View className="flex-row flex-wrap gap-3">
+        <Button>Registrar treino</Button>
+        <Button variant="secondary">Ver histórico</Button>
+        <Button variant="ghost">Agora não</Button>
+        <Button variant="danger">Excluir registro</Button>
+      </View>
+      <View className="flex-row flex-wrap items-center gap-3">
+        <Button size="sm">sm</Button>
+        <Button size="md" icon="plus">
+          md com ícone
+        </Button>
+        <Button size="lg">lg</Button>
+      </View>
+      <View className="flex-row flex-wrap gap-3">
+        <Button loading>Salvando</Button>
+        <Button disabled>Desabilitado</Button>
+      </View>
+    </View>
+  );
+}
 
 function Codigo({ children }: { children: string }) {
   return <Text className="text-code-sm text-content-secondary">{children}</Text>;
@@ -46,6 +75,10 @@ export default function ExplorarScreen() {
               repositório. Rode <Codigo>npm run ds:build</Codigo> para gerar o tema do app e{' '}
               <Codigo>npm run ds:lint</Codigo> para checar as telas.
             </Text>
+          </Collapsible>
+
+          <Collapsible titulo="Componentes: Button">
+            <CatalogoButton />
           </Collapsible>
 
           <Collapsible titulo="Movimento">
