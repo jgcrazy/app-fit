@@ -14,6 +14,7 @@ import { FeatureCard } from '@/shared/ui/FeatureCard';
 import { Field } from '@/shared/ui/Field';
 import { IconButton } from '@/shared/ui/IconButton';
 import { ListCard } from '@/shared/ui/ListCard';
+import { Toast } from '@/shared/ui/Toast';
 
 /**
  * Catálogo de desenvolvimento: mostra variantes lado a lado, então é a única
@@ -159,6 +160,15 @@ export default function ExplorarScreen() {
             <View className="gap-3 overflow-hidden rounded-card">
               <AppHeader title="Início" greeting="Boa noite, Ana" actions={[{ icon: 'bell', label: 'Notificações', onPress: () => {} }]} />
               <AppHeader title="Treino A — Peito e tríceps" onBack={() => {}} />
+            </View>
+          </Collapsible>
+
+          <Collapsible titulo="Componentes: Toast">
+            <View className="gap-3">
+              <Toast tone="success" title="Treino salvo" description="Ele já aparece no seu histórico." onClose={() => {}} />
+              <Toast tone="error" title="Não foi possível salvar" description="Confira a conexão e tente de novo." onClose={() => {}} />
+              <Toast tone="warning" title="Sem conexão" description="Seus registros ficam no aparelho e sobem quando a internet voltar." />
+              <Toast tone="info" title="Registro removido" action={{ label: 'Desfazer', onPress: () => {} }} onClose={() => {}} />
             </View>
           </Collapsible>
 
