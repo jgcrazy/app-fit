@@ -1,19 +1,23 @@
 import { NativeTabs } from 'expo-router/native-tabs';
-import { useColorScheme } from 'react-native';
 
-import { Colors } from '@/constants/theme';
+import { cor } from '@/shared/theme/tokens';
 
+/**
+ * Tab bar nativa no Ensign: surface-deep, ativo em content-accent, inativo em
+ * content-secondary. O rótulo nunca some.
+ */
 export default function AppTabs() {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === 'dark' ? 'dark' : 'light'];
-
   return (
     <NativeTabs
-      backgroundColor={colors.background}
-      indicatorColor={colors.backgroundElement}
-      labelStyle={{ selected: { color: colors.text } }}>
+      backgroundColor={cor['surface-deep']}
+      indicatorColor={cor['surface-raised']}
+      iconColor={{ default: cor['content-secondary'], selected: cor['content-accent'] }}
+      labelStyle={{
+        default: { color: cor['content-secondary'] },
+        selected: { color: cor['content-accent'] },
+      }}>
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>Início</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require('@/assets/images/tabIcons/home.png')}
           renderingMode="template"
@@ -21,7 +25,7 @@ export default function AppTabs() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="explore">
-        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>Explorar</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require('@/assets/images/tabIcons/explore.png')}
           renderingMode="template"

@@ -1,20 +1,12 @@
+/** App — Expo + NativeWind v4. Design system Ensign, tema `app` (escuro). */
+
+// O preset é GERADO de design-system/tokens.json (raiz do monorepo).
+// Não adicione cor, espaço, raio ou fonte aqui: edite tokens.json e rode `npm run ds:build`.
+const ensign = require('./src/shared/theme/tailwind-preset.native.js');
+
 /** @type {import('tailwindcss').Config} */
-
-// Os tokens vivem em src/shared/theme/tokens.js para que o design system possa
-// ser trocado num arquivo so, sem tocar em componente.
-const tokens = require('./src/shared/theme/tokens');
-
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  presets: [require('nativewind/preset')],
-  darkMode: 'class',
-  theme: {
-    extend: {
-      colors: tokens.colors,
-      spacing: tokens.spacing,
-      borderRadius: tokens.radius,
-      fontSize: tokens.fontSize,
-    },
-  },
+  presets: [require('nativewind/preset'), ensign],
   plugins: [],
 };

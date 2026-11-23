@@ -125,5 +125,11 @@ jobs:
           cache-dependency-path: apps/mobile/package-lock.json
 
       - run: npm ci
+
+      # Design system Ensign: gerados em dia com tokens.json, e nenhuma tela fora do sistema.
+      - name: Design system (ds:ci)
+        working-directory: .
+        run: npm run ds:ci
+
       - run: npx tsc --noEmit
       - run: npm run lint --if-present
