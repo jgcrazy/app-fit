@@ -1,0 +1,61 @@
+/* Admin — ponto de entrada do CSS. */
+
+/* O tema gerado vem PRIMEIRO: define as custom properties que o Tailwind usa. */
+@import './ensign-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--surface-canvas);
+    color: var(--content-primary);
+  }
+
+  /* Links herdam a affordance: cor sozinha não basta. */
+  a:not([class]) {
+    color: var(--content-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  a:not([class]):hover {
+    color: var(--content-link-hover);
+  }
+
+  /* Seleção de texto na marca. */
+  ::selection {
+    background-color: var(--surface-accent);
+    color: var(--content-on-accent);
+  }
+}
+
+@layer components {
+  /* Skeleton: espelha a caixa real, nunca um retângulo cinza genérico. */
+  .skeleton {
+    background-image: linear-gradient(
+      90deg,
+      var(--surface-raised) 0%,
+      var(--surface-raised-hover) 40%,
+      var(--surface-raised) 80%
+    );
+    background-size: 200% 100%;
+    border-radius: var(--radius-control);
+    animation: ensign-shimmer var(--duration-slower) var(--ease-linear) infinite;
+  }
+
+  /* Scrim de overlay. */
+  .scrim {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-scrim);
+    background-color: var(--surface-scrim);
+    animation: ensign-fade-in var(--duration-base) var(--ease-standard) both;
+  }
+}
