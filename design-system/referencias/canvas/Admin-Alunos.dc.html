@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Admin — Alunos</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ensign-theme.css">
+<link rel="stylesheet" href="ds/ensign/components/bundle.css">
+<script src="ds/ensign/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+.ad-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 0 24px; background: var(--surface-raised); border-bottom: 1px solid var(--border-default); flex-wrap: wrap; }
+.ad-crumb { font-size: 13px; line-height: 19px; color: var(--content-secondary); }
+.ad-h1 { margin: 0; font-family: var(--font-display); font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.01em; color: var(--content-primary); }
+.ad-eyebrow { margin: 0; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--content-secondary); }
+.ad-panel { background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-card); padding: 20px; }
+.ad-tick { font-size: 11px; line-height: 14px; font-variant-numeric: tabular-nums; color: var(--content-muted); }
+.ad-bar { flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px; min-width: 0; }
+.ad-bar-fill { width: 100%; max-width: 44px; background: var(--chart-2); border-radius: 4px 4px 0 0; }
+.ad-bar-lbl { font-size: 11px; line-height: 14px; color: var(--content-muted); }
+.ad-bar-val { font-size: 11px; line-height: 14px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--content-secondary); }
+</style>
+</helmet>
+
+<div data-theme="admin" style="background: var(--surface-canvas); min-height: 100vh; font-family: var(--font-sans)">
+<div style="display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <x-import component-from-global-scope="Ensign.Sidebar" items="{{menu}}" active="alunos"></x-import>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+
+    <div class="ad-topbar">
+      <span class="ad-crumb">Painel / Alunos</span>
+      <div style="display: flex; align-items: center; gap: 8px">
+        <x-import component-from-global-scope="Ensign.IconButton" name="search" label="Buscar"></x-import>
+        <x-import component-from-global-scope="Ensign.IconButton" name="bell" label="Notificações"></x-import>
+        <x-import component-from-global-scope="Ensign.Button" variant="primary" size="md" icon="plus">Novo aluno</x-import>
+      </div>
+    </div>
+
+    <div style="padding: 32px; display: flex; flex-direction: column; gap: 24px; max-width: 1280px">
+
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+        <h1 class="ad-h1">Alunos</h1>
+        <span class="ad-crumb">Atualizado agora</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+        <x-import component-from-global-scope="Ensign.KPICard" label="Alunos ativos" value="248" delta="{{d1}}" icon="user"></x-import>
+        <x-import component-from-global-scope="Ensign.KPICard" label="Adesão semanal" value="81%" delta="{{d2}}" icon="chart"></x-import>
+        <x-import component-from-global-scope="Ensign.KPICard" label="Treinos concluídos" value="1.904" delta="{{d3}}" icon="check"></x-import>
+        <x-import component-from-global-scope="Ensign.KPICard" label="Avaliações pendentes" value="12" delta="{{d4}}" icon="alert"></x-import>
+      </div>
+
+      <div class="ad-panel">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px">
+          <div>
+            <p class="ad-eyebrow">Treinos concluídos por dia</p>
+            <p style="margin: 6px 0 0; font-size: 13px; line-height: 19px; color: var(--content-muted)">Últimos 7 dias · todos os alunos ativos</p>
+          </div>
+          <x-import component-from-global-scope="Ensign.Button" variant="ghost" size="sm">Ver detalhes</x-import>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: stretch">
+          <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; height: 180px; padding-bottom: 22px">
+            <span class="ad-tick">320</span>
+            <span class="ad-tick">160</span>
+            <span class="ad-tick">0</span>
+          </div>
+          <div style="flex: 1 1 auto; min-width: 0; position: relative">
+            <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 158px; display: flex; flex-direction: column; justify-content: space-between">
+              <div style="height: 1px; background: var(--chart-grid)"></div>
+              <div style="height: 1px; background: var(--chart-grid)"></div>
+              <div style="height: 1px; background: var(--chart-axis)"></div>
+            </div>
+            <div style="display: flex; gap: 2px; height: 180px; align-items: stretch; position: relative">
+              <div class="ad-bar"><span class="ad-bar-val">214</span><div class="ad-bar-fill" style="height: 67%"></div><span class="ad-bar-lbl">Seg</span></div>
+              <div class="ad-bar"><span class="ad-bar-val">268</span><div class="ad-bar-fill" style="height: 84%"></div><span class="ad-bar-lbl">Ter</span></div>
+              <div class="ad-bar"><span class="ad-bar-val">241</span><div class="ad-bar-fill" style="height: 75%"></div><span class="ad-bar-lbl">Qua</span></div>
+              <div class="ad-bar"><span class="ad-bar-val">299</span><div class="ad-bar-fill" style="height: 93%"></div><span class="ad-bar-lbl">Qui</span></div>
+              <div class="ad-bar"><span class="ad-bar-val">276</span><div class="ad-bar-fill" style="height: 86%"></div><span class="ad-bar-lbl">Sex</span></div>
+              <div class="ad-bar"><span class="ad-bar-val">143</span><div class="ad-bar-fill" style="height: 45%"></div><span class="ad-bar-lbl">Sáb</span></div>
+              <div class="ad-bar"><span class="ad-bar-val">98</span><div class="ad-bar-fill" style="height: 31%"></div><span class="ad-bar-lbl">Dom</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+        <div style="display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap">
+          <div style="width: 280px">
+            <x-import component-from-global-scope="Ensign.Field" placeholder="Buscar aluno, e-mail ou plano"></x-import>
+          </div>
+          <x-import component-from-global-scope="Ensign.Button" variant="secondary" size="md" icon="list">Filtros</x-import>
+        </div>
+        <x-import component-from-global-scope="Ensign.Button" variant="ghost" size="md">Exportar CSV</x-import>
+      </div>
+
+      <x-import component-from-global-scope="Ensign.DataTable" columns="{{colunas}}" rows="{{linhas}}" range="1–6 de 248"></x-import>
+
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      d1: 4.8, d2: 2.1, d3: 11.3, d4: -18.0,
+      menu: [
+        { key: 'visao', icon: 'chart', label: 'Visão geral' },
+        { key: 'alunos', icon: 'user', label: 'Alunos' },
+        { key: 'treinos', icon: 'list', label: 'Planos de treino' },
+        { key: 'dietas', icon: 'package', label: 'Planos de dieta' },
+      ],
+      colunas: [
+        { key: 'aluno', label: 'Aluno' },
+        { key: 'plano', label: 'Plano' },
+        { key: 'desde', label: 'Desde', sortable: true, sort: 'desc' },
+        { key: 'adesao', label: 'Adesão', numeric: true },
+        { key: 'peso', label: 'Peso', numeric: true },
+        { key: 'status', label: 'Status' },
+        { key: 'acoes', label: '' },
+      ],
+      linhas: [
+        { aluno: 'Ariane Martins', plano: 'Hipertrofia B', desde: '04/09/2026', adesao: '92%', peso: '58,4 kg', status: 'active' },
+        { aluno: 'Marcos Vitor', plano: 'Força 5x5', desde: '28/08/2026', adesao: '78%', peso: '91,2 kg', status: 'active' },
+        { aluno: 'Lucas Prado', plano: 'Emagrecimento', desde: '19/08/2026', adesao: '41%', peso: '104,6 kg', status: 'pending' },
+        { aluno: 'Juliana Reis', plano: 'Hipertrofia A', desde: '02/08/2026', adesao: '88%', peso: '62,1 kg', status: 'active' },
+        { aluno: 'Pedro Alencar', plano: 'Condicionamento', desde: '14/07/2026', adesao: '12%', peso: '77,0 kg', status: 'canceled' },
+        { aluno: 'Carla Souza', plano: '—', desde: '09/07/2026', adesao: '0%', peso: '—', status: 'neutral' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

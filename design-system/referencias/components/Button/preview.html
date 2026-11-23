@@ -1,0 +1,27 @@
+<!-- @dsCard group="Ações" height=200 subtitle="Quatro variantes, três tamanhos, todos os estados" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  function Demo() {
+    return h('div', { className: 'ens-demo ens-demo--canvas' },
+      h('div', { className: 'ens-row' },
+        h(E.Button, { variant: 'primary' }, 'Criar pedido'),
+        h(E.Button, { variant: 'secondary' }, 'Ver detalhes'),
+        h(E.Button, { variant: 'ghost' }, 'Cancelar'),
+        h(E.Button, { variant: 'danger' }, 'Excluir')
+      ),
+      h('div', { className: 'ens-row' },
+        h(E.Button, { variant: 'primary', size: 'sm' }, 'sm'),
+        h(E.Button, { variant: 'primary', size: 'md', icon: 'plus' }, 'md com ícone'),
+        h(E.Button, { variant: 'primary', size: 'lg' }, 'lg'),
+        h(E.Button, { variant: 'primary', loading: true }, 'Salvando'),
+        h(E.Button, { variant: 'primary', disabled: true }, 'Desabilitado'),
+        h(E.IconButton, { name: 'bell', label: 'Notificações' })
+      )
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

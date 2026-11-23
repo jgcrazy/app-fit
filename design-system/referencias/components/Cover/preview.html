@@ -1,0 +1,50 @@
+<!-- @dsCard height=288 -->
+<style>
+  .ens-cover { display: block; width: 100%; height: auto; }
+  .ens-cover .g    { fill: var(--surface-canvas); }
+  .ens-cover .slab { fill: var(--surface-brand); }
+  .ens-cover .sec  { fill: var(--surface-secondary); }
+  .ens-cover .acc  { fill: var(--surface-accent); }
+  .ens-cover .deep { fill: var(--surface-brand-strong); }
+  .ens-cover .name {
+    fill: var(--content-primary);
+    font-family: var(--font-display);
+    font-size: 104px; font-weight: 700; letter-spacing: -0.03em;
+  }
+  .ens-cover .tag {
+    fill: var(--content-muted);
+    font-family: var(--font-sans);
+    font-size: 13px; font-weight: 500;
+  }
+</style>
+<svg class="ens-cover" viewBox="0 0 960 288" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ensign — três cores, duas superfícies, um conjunto de tokens">
+  <!--
+    blocos      surface-brand 240x288 · surface-secondary 240x192 · surface-accent 240x96 · surface-brand-strong disco r48
+    arranjo     uma laje alta (480-720) com satélites empilhados na coluna direita; o disco sangra pela borda direita
+    padrão      pílulas da escala de raio — a assinatura deste sistema é radius-button indo de 9999px no app a 6px no admin, então a pílula é a forma que diz "Ensign" e não um sistema qualquer
+    escalas     lados em múltiplos de space-12 (48) · pitch space-6 (24) · altura da pílula space-4 (16) · rx = metade do lado curto (8) · disco rx 48 · recuo space-6 (24)
+  -->
+  <rect class="g" x="0" y="0" width="960" height="288"/>
+
+  <rect class="slab" x="480" y="0" width="240" height="288"/>
+  <rect class="sec"  x="720" y="0" width="240" height="192"/>
+  <rect class="acc"  x="720" y="192" width="240" height="96"/>
+  <circle class="deep" cx="936" cy="144" r="48"/>
+
+  <g>
+    <rect class="sec" x="504" y="16"  width="112" height="16" rx="8"/>
+    <rect class="sec" x="504" y="40"  width="168" height="16" rx="8"/>
+    <rect class="sec" x="504" y="64"  width="72"  height="16" rx="8"/>
+    <rect class="sec" x="504" y="88"  width="136" height="16" rx="8"/>
+    <rect class="acc" x="504" y="112" width="192" height="16" rx="8"/>
+    <rect class="sec" x="504" y="136" width="88"  height="16" rx="8"/>
+    <rect class="sec" x="504" y="160" width="152" height="16" rx="8"/>
+    <rect class="sec" x="504" y="184" width="64"  height="16" rx="8"/>
+    <rect class="sec" x="504" y="208" width="120" height="16" rx="8"/>
+    <rect class="sec" x="504" y="232" width="104" height="16" rx="8"/>
+    <rect class="sec" x="504" y="256" width="176" height="16" rx="8"/>
+  </g>
+
+  <text class="name" x="64" y="196">Ensign</text>
+  <text class="tag"  x="64" y="232">Três cores, duas superfícies, um conjunto de tokens.</text>
+</svg>

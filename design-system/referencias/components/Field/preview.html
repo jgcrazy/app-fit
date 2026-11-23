@@ -1,0 +1,43 @@
+<!-- @dsCard group="Formulário" height=440 subtitle="Os dois temas, com ajuda, erro e desabilitado" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  function Grupo(props) {
+    return h('div', {
+      className: 'ens-demo ens-demo--canvas',
+      'data-theme': props.tema,
+      style: { flex: '1 1 0', minWidth: 0 },
+    },
+      h('p', { className: 'ens-demo__cap' }, props.titulo),
+      h(E.Field, {
+        label: 'Nome do cliente', placeholder: 'Ex.: Ariane Martins',
+        help: 'Como aparece na nota.', required: true,
+      }),
+      h(E.Field, {
+        as: 'select', label: 'Forma de pagamento',
+        options: [
+          { value: 'pix', label: 'Pix' },
+          { value: 'cartao', label: 'Cartão de crédito' },
+          { value: 'dinheiro', label: 'Dinheiro' },
+        ],
+      }),
+      h(E.Field, {
+        label: 'E-mail', type: 'email', inputMode: 'email',
+        defaultValue: 'ariane@', error: 'Informe um e-mail válido.',
+      }),
+      h(E.Field, { label: 'Observações', as: 'textarea', rows: 2, placeholder: 'Opcional' }),
+      h(E.Field, { label: 'Código interno', defaultValue: 'PDO-4417', disabled: true })
+    );
+  }
+
+  function Demo() {
+    return h('div', { style: { display: 'flex', gap: 'var(--space-4)', alignItems: 'stretch' } },
+      h(Grupo, { tema: 'app', titulo: 'Tema app' }),
+      h(Grupo, { tema: 'admin', titulo: 'Tema admin' })
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

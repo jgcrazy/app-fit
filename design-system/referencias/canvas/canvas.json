@@ -1,0 +1,91 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-23T04:35:10Z"
+ },
+ "title": "Projeto-Fit",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 1760,
+   "expand": "fill",
+   "title": "Styleguide"
+  },
+  "App-Hoje.dc.html": {
+   "x": 0,
+   "y": 2160,
+   "w": 390,
+   "h": 844,
+   "title": "App — Hoje"
+  },
+  "App-Dieta.dc.html": {
+   "x": 470,
+   "y": 2160,
+   "w": 390,
+   "h": 844,
+   "title": "App — Dieta"
+  },
+  "Admin-Alunos.dc.html": {
+   "x": 0,
+   "y": 3340,
+   "w": 1440,
+   "h": 1040,
+   "expand": "fill",
+   "title": "Admin — Alunos"
+  },
+  "Admin-Treinos.dc.html": {
+   "x": 1560,
+   "y": 3340,
+   "w": 1440,
+   "h": 1040,
+   "expand": "fill",
+   "title": "Admin — Treinos"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "App-Hoje.dc.html",
+  "App-Dieta.dc.html",
+  "Admin-Alunos.dc.html",
+  "Admin-Treinos.dc.html"
+ ],
+ "notes": {
+  "t1": {
+   "x": 0,
+   "y": -300,
+   "text": "Styleguide",
+   "kind": "title1",
+   "maxW": 1440
+  },
+  "t2": {
+   "x": 0,
+   "y": 1860,
+   "text": "App — Expo / NativeWind",
+   "kind": "title1",
+   "maxW": 940
+  },
+  "t3": {
+   "x": 0,
+   "y": 3040,
+   "text": "Painel administrativo — Laravel 13",
+   "kind": "title1",
+   "maxW": 3000
+  }
+ },
+ "designSystems": [
+  {
+   "title": "Ensign Design System",
+   "namespace": "ensign",
+   "artifact": "https://claude.ai/artifact/STGHQPzyBZcSHoPdGfCdTk",
+   "version": "1795408204-ea4a",
+   "copiedAt": "2026-11-23T04:35:10Z"
+  }
+ ]
+}

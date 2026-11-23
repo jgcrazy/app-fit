@@ -12,6 +12,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative, extname, basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// Raiz do monorepo: um nível acima de scripts/, de onde quer que o comando rode.
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 /**
  * Onde mora UI de produto. Scripts de ETL, testes e config não são tela.
@@ -19,25 +20,49 @@ const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), '..');
  * Hoje lá só há a welcome.blade.php padrão do Laravel, que não é tela do produto.
  */
 const ALVOS_PADRAO = ['apps/mobile/src'];
+/** Caminho relativo à raiz, sempre com "/" (no Windows o relative() devolve "\"). */
+const relativo = (caminho) => relative(RAIZ, caminho).split('\\').join('/');
 
 /** Arquivos gerados e dependências: o sistema pode ter hex, o produto não. */
 const IGNORAR_CAMINHO = [
   'node_modules', 'vendor', 'dist', 'build', '.git', 'storage', 'public/build',
   'bootstrap/cache', '.expo', 'ios', 'android', 'coverage',
+  // Os artboards do canvas são referência de design, não código de produto:
+  // o styleguide mostra a paleta, então ele TEM hex de propósito.
+  'canvas', 'ensign/canvas',
+  // Referências de design (brand book, canvas, componentes web do pacote): não são produto.
+  'design-system/referencias',
 ];
 const IGNORAR_ARQUIVO = [
   'tokens.json', 'tokens.ts', 'ensign-theme.css',
   'tailwind-preset.web.js', 'tailwind-preset.native.js', 'tailwind-preset.js',
+  // Previews do design system: demonstram os componentes, inclusive o
+  // contraexemplo de branco sobre amarelo.
+  'preview.html',
 ];
-const EXTENSOES = ['.php', '.blade.php', '.js', '.jsx', '.ts', '.tsx', '.vue', '.css', '.scss'];
+const EXTENSOES = [
+  '.php', '.blade.php', '.js', '.jsx', '.ts', '.tsx', '.vue',
+  '.css', '.scss', '.html', '.htm',
+];
 
 const REGRAS = [
   {
+    // Hex de 6 ou 8 dígitos é sempre cor.
     nome: 'hex-solto',
-    re: /#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{1,5})?\b/g,
+    re: /#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?\b/g,
     msg: 'Hex no código. Use um token semântico (surface-*, content-*, border-*).',
-    // IDs de elemento, âncoras e comentários de issue não são cor
-    falsoPositivo: (linha) => /(?:href|id|#\{|\$ref|aria-|\bissue\b|\bPR\b)/i.test(linha),
+    // Âncoras, IDs e referências não são cor
+    falsoPositivo: (linha) => /(?:href=|\bid=|#\{|\$ref|aria-)/i.test(linha),
+  },
+  {
+    // Hex de 3 ou 4 dígitos é ambíguo: "#1042" é um número de pedido E um #rgba
+    // válido. Só acusa quando a linha fala de cor.
+    nome: 'hex-curto',
+    re: /#[0-9a-fA-F]{3,4}\b/g,
+    msg: 'Hex curto em contexto de cor. Use um token semântico.',
+    falsoPositivo: (linha) =>
+      !/\b(?:color|background|bg|fill|stroke|border|shadow|outline|tint|theme|palette)\b/i.test(linha)
+      || /(?:href=|\bid=|#\{|\$ref|aria-)/i.test(linha),
   },
   {
     nome: 'funcao-de-cor',
@@ -65,7 +90,8 @@ const REGRAS = [
     nome: 'foco-removido',
     re: /outline:\s*(?:none|0)\b/g,
     msg: 'outline:none sem substituir o indicador. Use a receita de foco de dois anéis.',
-    falsoPositivo: (linha) => /box-shadow|focus-visible|border-focus/.test(linha),
+    // A regra CSS costuma ocupar várias linhas: olhe a janela ao redor.
+    falsoPositivo: (linha, janela) => /box-shadow|focus-visible|border-focus|outline-offset/.test(janela),
   },
   {
     nome: 'div-interativa',
@@ -82,7 +108,7 @@ const REGRAS = [
 function* arquivos(dir) {
   for (const nome of readdirSync(dir)) {
     const caminho = join(dir, nome);
-    const rel = relative(RAIZ, caminho);
+    const rel = relativo(caminho);
     if (IGNORAR_CAMINHO.some((p) => rel === p || rel.startsWith(`${p}/`))) continue;
     if (nome.startsWith('.') && nome !== '.') continue;
     const st = statSync(caminho);
@@ -103,12 +129,14 @@ for (const caminho of lista) {
   const linhas = readFileSync(caminho, 'utf8').split('\n');
   linhas.forEach((linha, i) => {
     if (/ensign-lint-ignore/.test(linha)) return;
+    // Janela de 3 linhas antes e depois: regras CSS ocupam várias linhas.
+    const janela = linhas.slice(Math.max(0, i - 3), i + 4).join('\n');
     for (const r of REGRAS) {
       r.re.lastIndex = 0;
       if (!r.re.test(linha)) continue;
-      if (r.falsoPositivo?.(linha)) continue;
+      if (r.falsoPositivo?.(linha, janela)) continue;
       achados.push({
-        arquivo: relative(RAIZ, caminho), linha: i + 1,
+        arquivo: relativo(caminho), linha: i + 1,
         regra: r.nome, msg: r.msg, trecho: linha.trim().slice(0, 100),
       });
     }

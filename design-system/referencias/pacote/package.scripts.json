@@ -1,0 +1,8 @@
+{
+  "_comentario": "Cole estes scripts no package.json do projeto (admin e app).",
+  "scripts": {
+    "ds:build": "node scripts/build-design-system.mjs",
+    "ds:lint": "node scripts/lint-design-system.mjs",
+    "ds:ci": "npm run ds:build && git diff --exit-code design-system resources/css && npm run ds:lint"
+  }
+}
