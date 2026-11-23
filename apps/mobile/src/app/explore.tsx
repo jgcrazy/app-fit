@@ -8,8 +8,10 @@ import { paddingInferiorTela, px } from '@/shared/theme/layout';
 import { escalas } from '@/shared/theme/tokens';
 import { Badge } from '@/shared/ui/Badge';
 import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
 import { Field } from '@/shared/ui/Field';
 import { IconButton } from '@/shared/ui/IconButton';
+import { ListCard } from '@/shared/ui/ListCard';
 
 /**
  * Catálogo de desenvolvimento: mostra variantes lado a lado, então é a única
@@ -127,6 +129,18 @@ export default function ExplorarScreen() {
 
           <Collapsible titulo="Componentes: Field">
             <CatalogoField />
+          </Collapsible>
+
+          <Collapsible titulo="Componentes: Card e ListCard">
+            <View className="gap-3">
+              <ListCard title="Treino A — Peito e tríceps" meta="Hoje, 07:30 · 6 exercícios" value="45 min" status="active" statusLabel="Concluído" onPress={() => {}} />
+              <ListCard title="Treino B — Costas e bíceps" meta="Amanhã · 5 exercícios" status="pending" statusLabel="Agendado" onPress={() => {}} />
+              <ListCard title="Caminhada" meta="Ontem" value="32 min" status="canceled" statusLabel="Pulado" />
+              <Card>
+                <Text className="text-h3 text-content-primary">Esta semana</Text>
+                <Text className="text-body text-content-secondary">3 treinos registrados. Dia perdido não apaga o que você já fez.</Text>
+              </Card>
+            </View>
           </Collapsible>
 
           <Collapsible titulo="Movimento">
