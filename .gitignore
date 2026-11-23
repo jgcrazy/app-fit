@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build
+dist/
+build/
+.expo/
+*.tsbuildinfo
+
+# Laravel
+apps/api/storage/*.key
+apps/api/storage/framework/cache/*
+apps/api/storage/framework/sessions/*
+apps/api/storage/framework/views/*
+apps/api/storage/logs/*
+apps/api/public/build/
+apps/api/public/hot
+apps/api/public/storage
+apps/api/bootstrap/cache/*.php
+apps/api/.phpunit.result.cache
+
+# Dados importados de bases externas (nunca versionar — ver docs/licencas-dados.md)
+scripts/etl/data/
+*.sqlite
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
