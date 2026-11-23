@@ -9,6 +9,7 @@ import { escalas } from '@/shared/theme/tokens';
 import { Badge } from '@/shared/ui/Badge';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
+import { FeatureCard } from '@/shared/ui/FeatureCard';
 import { Field } from '@/shared/ui/Field';
 import { IconButton } from '@/shared/ui/IconButton';
 import { ListCard } from '@/shared/ui/ListCard';
@@ -141,6 +142,15 @@ export default function ExplorarScreen() {
                 <Text className="text-body text-content-secondary">3 treinos registrados. Dia perdido não apaga o que você já fez.</Text>
               </Card>
             </View>
+          </Collapsible>
+
+          <Collapsible titulo="Componentes: FeatureCard">
+            <FeatureCard
+              title="Registre seu primeiro treino"
+              body="Anote o que você fez hoje, do jeito que foi. Dá para ajustar depois."
+              cta="Registrar treino"
+              onCta={() => {}}
+            />
           </Collapsible>
 
           <Collapsible titulo="Movimento">
