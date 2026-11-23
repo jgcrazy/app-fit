@@ -33,18 +33,24 @@ export function useInteracao() {
   };
 }
 
+// Classes literais: o Tailwind só gera o que aparece escrito por inteiro.
+const RAIO = {
+  button: { interno: 'absolute rounded-button border-border-focus', externo: 'absolute rounded-button border-border-focus-outline' },
+  control: { interno: 'absolute rounded-control border-border-focus', externo: 'absolute rounded-control border-border-focus-outline' },
+};
+
 /** Dois anéis: Sunflare por dentro, contorno escuro por fora. Foco não anima. */
-export function AnelDeFoco() {
+export function AnelDeFoco({ raio = 'button' }: { raio?: keyof typeof RAIO }) {
   return (
     <>
       <View
         pointerEvents="none"
-        className="absolute rounded-button border-border-focus"
+        className={RAIO[raio].interno}
         style={{ top: -ANEL_FOCO, bottom: -ANEL_FOCO, left: -ANEL_FOCO, right: -ANEL_FOCO, borderWidth: ANEL_FOCO }}
       />
       <View
         pointerEvents="none"
-        className="absolute rounded-button border-border-focus-outline"
+        className={RAIO[raio].externo}
         style={{
           top: -2 * ANEL_FOCO,
           bottom: -2 * ANEL_FOCO,

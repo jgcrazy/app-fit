@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -7,6 +8,7 @@ import { paddingInferiorTela, px } from '@/shared/theme/layout';
 import { escalas } from '@/shared/theme/tokens';
 import { Badge } from '@/shared/ui/Badge';
 import { Button } from '@/shared/ui/Button';
+import { Field } from '@/shared/ui/Field';
 import { IconButton } from '@/shared/ui/IconButton';
 
 /**
@@ -39,6 +41,30 @@ function CatalogoButton() {
         <IconButton name="plus" label="Adicionar" size={16} />
         <IconButton name="dots" label="Mais opções" disabled />
       </View>
+    </View>
+  );
+}
+
+function CatalogoField() {
+  const [nivel, setNivel] = useState<string>();
+  return (
+    <View className="gap-4">
+      <Field label="Peso (kg)" placeholder="Ex.: 72,5" keyboardType="decimal-pad" help="Use a mesma balança de sempre." />
+      <Field label="Altura (cm)" keyboardType="number-pad" value="1,72" error="Use só números, em centímetros. Ex.: 172" required />
+      <Field
+        as="select"
+        label="Experiência com treino"
+        placeholder="Escolha uma opção"
+        value={nivel}
+        onValueChange={setNivel}
+        options={[
+          { value: 'iniciante', label: 'Começando agora' },
+          { value: 'intermediario', label: 'Treino há alguns meses' },
+          { value: 'avancado', label: 'Treino há anos' },
+        ]}
+      />
+      <Field as="textarea" label="Observações" placeholder="Algo que você queira registrar sobre o treino" rows={3} />
+      <Field label="E-mail" value="ana@exemplo.com" disabled />
     </View>
   );
 }
@@ -97,6 +123,10 @@ export default function ExplorarScreen() {
               <Badge tone="neutral" />
               <Badge tone="active" dot={false} />
             </View>
+          </Collapsible>
+
+          <Collapsible titulo="Componentes: Field">
+            <CatalogoField />
           </Collapsible>
 
           <Collapsible titulo="Movimento">
