@@ -24,3 +24,26 @@ jest.mock('react-native-reanimated', () => {
     withTiming: (destino) => destino,
   };
 });
+
+// @expo/ui carrega SwiftUI/Compose no import. No teste, o menu mostra o
+// gatilho e uma opção pressionável por ação (testID "menu-opcao-<id>"), e o
+// picker da web vira uma lista de opções pressionáveis.
+jest.mock('@expo/ui/community/menu', () => {
+  const { Pressable, Text, View } = require('react-native');
+  return {
+    MenuView: ({ children, actions = [], onPressAction }) => (
+      <View>
+        {children}
+        {actions.map((acao) => (
+          <Pressable
+            key={acao.id ?? acao.title}
+            testID={`menu-opcao-${acao.id ?? acao.title}`}
+            accessibilityState={{ checked: acao.state === 'on' }}
+            onPress={() => onPressAction?.({ nativeEvent: { event: acao.id ?? acao.title } })}>
+            <Text>{acao.title}</Text>
+          </Pressable>
+        ))}
+      </View>
+    ),
+  };
+});
