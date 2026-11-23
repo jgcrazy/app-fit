@@ -1,7 +1,7 @@
 ---
 name: Bug
 about: Comportamento incorreto
-labels: bug
+labels: tipo:fix
 ---
 
 ## O que acontece
@@ -11,6 +11,13 @@ labels: bug
 ## Como reproduzir
 
 1.
+
+## Área
+
+- [ ] mobile
+- [ ] api
+- [ ] design-system
+- [ ] ci
 
 ## Ambiente
 
@@ -25,3 +32,7 @@ App: <!-- versão / build --> · Dispositivo: <!-- iOS / Android, versão -->
 - [ ] Dado de saúde incorreto ou perdido (crítico)
 - [ ] Bloqueia uso
 - [ ] Incômodo
+
+## Critérios de aceite
+
+- [ ] Teste automatizado que reproduz o bug e impede que ele volte

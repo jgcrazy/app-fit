@@ -1,8 +1,10 @@
 {
   "name": "app-fit",
   "private": true,
-  "description": "Monorepo app-fit. Só ferramentas do design system; dependências ficam em cada app.",
+  "description": "Monorepo app-fit. Só ferramentas do repositório; dependências ficam em cada app.",
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks",
+    "hooks": "git config core.hooksPath .githooks",
     "ds:build": "node scripts/build-design-system.mjs",
     "ds:lint": "node scripts/lint-design-system.mjs",
     "ds:ci": "node scripts/build-design-system.mjs && git diff --exit-code apps/mobile/src/shared/theme && node scripts/lint-design-system.mjs"

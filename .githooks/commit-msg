@@ -1,0 +1,3 @@
+#!/bin/sh
+# Conventional Commits citando a issue. Ver scripts/check-commit-msg.mjs.
+exec node "$(git rev-parse --show-toplevel)/scripts/check-commit-msg.mjs" "$1"
