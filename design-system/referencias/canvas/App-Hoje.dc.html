@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>App — Hoje</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ensign-theme.css">
+<link rel="stylesheet" href="ds/ensign/components/bundle.css">
+<script src="ds/ensign/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+.ap-sec { margin: 0; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--content-secondary); }
+.ap-macro { flex: 1 1 0; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-card); padding: 12px; }
+.ap-macro-k { margin: 0; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--content-secondary); }
+.ap-macro-v { margin: 4px 0 0; font-size: 20px; line-height: 24px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--content-primary); }
+.ap-macro-u { font-size: 13px; font-weight: 500; color: var(--content-muted); }
+</style>
+</helmet>
+
+<div data-theme="app" style="width: 390px; height: 844px; box-sizing: border-box; background: var(--surface-canvas); display: flex; flex-direction: column; font-family: var(--font-sans); overflow: hidden">
+
+  <div style="height: 44px; flex: 0 0 auto; background: var(--surface-brand)"></div>
+  <x-import component-from-global-scope="Ensign.AppHeader" greeting="Boa noite, jG" title="Hoje"></x-import>
+
+  <div style="flex: 1 1 auto; overflow: hidden; padding: 16px 16px 0; display: flex; flex-direction: column; gap: 16px">
+
+    <x-import component-from-global-scope="Ensign.FeatureCard" title="Peito e tríceps" body="Treino B do ciclo 3. Quatro exercícios, cerca de 48 minutos." cta="Começar treino"></x-import>
+
+    <div style="display: flex; gap: 8px">
+      <div class="ap-macro">
+        <p class="ap-macro-k">Proteína</p>
+        <p class="ap-macro-v">148<span class="ap-macro-u"> g</span></p>
+      </div>
+      <div class="ap-macro">
+        <p class="ap-macro-k">Calorias</p>
+        <p class="ap-macro-v">1.180</p>
+      </div>
+      <div class="ap-macro">
+        <p class="ap-macro-k">Água</p>
+        <p class="ap-macro-v">2,1<span class="ap-macro-u"> L</span></p>
+      </div>
+    </div>
+
+    <p class="ap-sec">Exercícios</p>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <x-import component-from-global-scope="Ensign.ListCard" title="Supino reto" meta="4 séries · 8-10 reps · 90s" value="42,5 kg" status="active" status-label="Feito"></x-import>
+      <x-import component-from-global-scope="Ensign.ListCard" title="Crucifixo inclinado" meta="3 séries · 12 reps · 60s" value="14 kg" status="active" status-label="Feito"></x-import>
+      <x-import component-from-global-scope="Ensign.ListCard" title="Tríceps corda" meta="4 séries · 12-15 reps · 60s" value="26 kg" status="pending" status-label="Agora"></x-import>
+      <x-import component-from-global-scope="Ensign.ListCard" title="Mergulho no banco" meta="3 séries · até a falha" value="corpo" status="neutral" status-label="A fazer"></x-import>
+    </div>
+
+  </div>
+
+  <x-import component-from-global-scope="Ensign.BottomTabBar" items="{{abas}}" active="hoje"></x-import>
+  <div style="height: 34px; flex: 0 0 auto; background: var(--surface-deep)"></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      abas: [
+        { key: 'hoje', icon: 'home', label: 'Hoje' },
+        { key: 'treinos', icon: 'list', label: 'Treinos' },
+        { key: 'dieta', icon: 'package', label: 'Dieta' },
+        { key: 'perfil', icon: 'user', label: 'Perfil' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

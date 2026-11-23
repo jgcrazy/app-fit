@@ -1,0 +1,27 @@
+<!-- @dsCard group="Cards" height=300 subtitle="Os 30% em força máxima, sobre o canvas navy" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  function Demo() {
+    return h('div', { className: 'ens-demo ens-demo--canvas', 'data-theme': 'app' },
+      h('p', { className: 'ens-demo__cap' }, 'FeatureCard — um ou dois por tela'),
+      h(E.FeatureCard, {
+        title: 'Frete grátis hoje',
+        body: 'Em pedidos acima de R$ 80 nas lojas do seu bairro. Vale até as 23h.',
+        cta: 'Ver lojas',
+      }),
+      h('p', { className: 'ens-demo__cap' }, 'Ao lado de um ListCard, para comparar o peso'),
+      h(E.ListCard, {
+        title: 'Pedido #1042 — Ariane Martins',
+        meta: 'Hoje, 19:42 · 3 itens',
+        value: 'R$ 128,90',
+        status: 'pending',
+        statusLabel: 'Em rota',
+      })
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

@@ -1,0 +1,35 @@
+<!-- @dsCard group="Estado" height=420 subtitle="Quatro tons nos dois temas" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  var ITENS = [
+    { tone: 'success', title: 'Pedido criado', body: 'O cliente recebeu a confirmação por e-mail.' },
+    { tone: 'error',   title: 'Não foi possível salvar', body: 'Verifique a conexão e tente de novo.' },
+    { tone: 'warning', title: 'Estoque baixo', body: '3 itens com menos de 5 unidades.' },
+    { tone: 'info',    title: 'Relatório pronto', body: 'Disponível em Relatórios > Exportações.' },
+  ];
+
+  function Grupo(props) {
+    return h('div', {
+      className: 'ens-demo ens-demo--canvas',
+      'data-theme': props.tema,
+      style: { flex: '1 1 0' },
+    },
+      h('p', { className: 'ens-demo__cap' }, props.titulo),
+      ITENS.map(function (it) {
+        return h(E.Toast, { key: it.tone, tone: it.tone, title: it.title }, it.body);
+      })
+    );
+  }
+
+  function Demo() {
+    return h('div', { style: { display: 'flex', gap: 'var(--space-4)' } },
+      h(Grupo, { tema: 'app', titulo: 'Tema app' }),
+      h(Grupo, { tema: 'admin', titulo: 'Tema admin' })
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

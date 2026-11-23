@@ -1,0 +1,27 @@
+<!-- @dsCard group="Navegação" height=260 subtitle="Com saudação, e em tela de detalhe com voltar" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  function Demo() {
+    return h('div', { className: 'ens-demo ens-demo--canvas', 'data-theme': 'app' },
+      h('p', { className: 'ens-demo__cap' }, 'Tela de nível superior'),
+      h('div', { className: 'ens-phone' },
+        h(E.AppHeader, { greeting: 'Boa noite, jG', title: 'Pedidos' }),
+        h('div', { style: { padding: 'var(--space-4)' } },
+          h(E.ListCard, {
+            title: 'Pedido #1042', meta: 'Hoje, 19:42',
+            value: 'R$ 128,90', status: 'pending', statusLabel: 'Em rota',
+          })
+        )
+      ),
+      h('p', { className: 'ens-demo__cap' }, 'Tela de detalhe'),
+      h('div', { className: 'ens-phone' },
+        h(E.AppHeader, { back: true, title: 'Pedido #1042' })
+      )
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

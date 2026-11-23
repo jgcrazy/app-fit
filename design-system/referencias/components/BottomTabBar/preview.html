@@ -1,0 +1,32 @@
+<!-- @dsCard group="Navegação" height=300 subtitle="Quatro itens, ativo em Sunflare com indicador de 3px" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  var ITENS = [
+    { key: 'home',    icon: 'home',    label: 'Início' },
+    { key: 'pedidos', icon: 'package', label: 'Pedidos' },
+    { key: 'relat',   icon: 'chart',   label: 'Relatórios' },
+    { key: 'perfil',  icon: 'user',    label: 'Perfil' },
+  ];
+
+  function Demo() {
+    return h('div', { className: 'ens-demo ens-demo--canvas', 'data-theme': 'app' },
+      h('p', { className: 'ens-demo__cap' }, 'Ativo: Pedidos'),
+      h('div', { className: 'ens-phone' },
+        h(E.AppHeader, { title: 'Pedidos' }),
+        h('div', { style: { padding: 'var(--space-4)', minHeight: '72px' } },
+          h(E.ListCard, { title: 'Pedido #1042', meta: '3 itens', value: 'R$ 128,90' })
+        ),
+        h(E.BottomTabBar, { items: ITENS, active: 'pedidos' })
+      ),
+      h('p', { className: 'ens-demo__cap' }, 'Ativo: Início'),
+      h('div', { className: 'ens-phone' },
+        h(E.BottomTabBar, { items: ITENS, active: 'home' })
+      )
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

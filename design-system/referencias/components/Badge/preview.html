@@ -1,0 +1,35 @@
+<!-- @dsCard group="Estado" height=180 subtitle="Quatro tons nos dois temas, com e sem ponto" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+  var TONS = ['active', 'pending', 'canceled', 'neutral'];
+
+  function Grupo(props) {
+    return h('div', {
+      className: 'ens-demo ens-demo--canvas',
+      'data-theme': props.tema,
+      style: { flex: '1 1 0' },
+    },
+      h('p', { className: 'ens-demo__cap' }, props.titulo),
+      h('div', { className: 'ens-row' }, TONS.map(function (t) {
+        return h(E.Badge, { key: t, tone: t });
+      })),
+      h('div', { className: 'ens-row' },
+        h(E.Badge, { tone: 'active', dot: false }, 'Entregue'),
+        h(E.Badge, { tone: 'pending', dot: false }, 'Em rota'),
+        h(E.Badge, { tone: 'canceled', dot: false }, 'Estornado'),
+        h(E.Badge, { tone: 'neutral', dot: false }, 'Arquivado')
+      )
+    );
+  }
+
+  function Demo() {
+    return h('div', { style: { display: 'flex', gap: 'var(--space-4)' } },
+      h(Grupo, { tema: 'app', titulo: 'Tema app' }),
+      h(Grupo, { tema: 'admin', titulo: 'Tema admin' })
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

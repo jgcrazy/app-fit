@@ -1,0 +1,23 @@
+<!-- @dsCard group="Cards" height=300 subtitle="Listagem no tema app, com os quatro status" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  var LINHAS = [
+    { title: 'Pedido #1042 — Ariane Martins', meta: 'Hoje, 19:42 · 3 itens', value: 'R$ 128,90', status: 'pending', statusLabel: 'Em rota' },
+    { title: 'Pedido #1041 — Marcos Vitor',   meta: 'Hoje, 19:08 · 1 item',  value: 'R$ 42,00',  status: 'active',  statusLabel: 'Entregue' },
+    { title: 'Pedido #1040 — Pizzaria Dom',   meta: 'Hoje, 18:55 · 7 itens', value: 'R$ 311,45', status: 'canceled', statusLabel: 'Cancelado' },
+  ];
+
+  function Demo() {
+    return h('div', { className: 'ens-demo ens-demo--canvas', 'data-theme': 'app' },
+      h('p', { className: 'ens-demo__cap' }, 'ListCard — tema app'),
+      LINHAS.map(function (l, i) {
+        return h(E.ListCard, Object.assign({ key: i }, l));
+      })
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

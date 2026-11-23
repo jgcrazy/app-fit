@@ -1,0 +1,40 @@
+<!-- @dsCard group="Dados" height=420 subtitle="Tabela do admin com ordenação, status e ações" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  var COLUNAS = [
+    { key: 'pedido', label: 'Pedido' },
+    { key: 'cliente', label: 'Cliente' },
+    { key: 'criado', label: 'Criado em', sortable: true, sort: 'desc' },
+    { key: 'itens', label: 'Itens', numeric: true },
+    { key: 'total', label: 'Total', numeric: true, sortable: true },
+    { key: 'status', label: 'Status' },
+    { key: 'acoes', label: '' },
+  ];
+
+  var LINHAS = [
+    { pedido: '#1042', cliente: 'Ariane Martins', criado: '23/11 19:42', itens: 3, total: 'R$ 128,90', status: 'pending' },
+    { pedido: '#1041', cliente: 'Marcos Vitor',   criado: '23/11 19:08', itens: 1, total: 'R$ 42,00',  status: 'active' },
+    { pedido: '#1040', cliente: 'Pizzaria Dom',   criado: '23/11 18:55', itens: 7, total: 'R$ 311,45', status: 'canceled' },
+    { pedido: '#1039', cliente: 'Lucas Prado',    criado: '23/11 18:31', itens: 2, total: 'R$ 76,20',  status: 'active' },
+    { pedido: '#1038', cliente: 'Mercado Via',    criado: '23/11 17:04', itens: 12, total: 'R$ 1.204,00', status: 'neutral' },
+  ];
+
+  function Demo() {
+    return h('div', { className: 'ens-demo ens-demo--canvas', 'data-theme': 'admin' },
+      h('div', { className: 'ens-row', style: { justifyContent: 'space-between' } },
+        h('div', { className: 'ens-row', style: { gap: 'var(--space-2)' } },
+          h('div', { style: { width: '260px' } },
+            h(E.Field, { placeholder: 'Buscar pedido ou cliente' })),
+          h(E.Button, { variant: 'secondary', size: 'md', icon: 'list' }, 'Filtros')
+        ),
+        h(E.Button, { variant: 'primary', size: 'md', icon: 'plus' }, 'Novo pedido')
+      ),
+      h(E.DataTable, { columns: COLUNAS, rows: LINHAS, range: '41–45 de 338' })
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Ensign — Styleguide</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ensign-theme.css">
+<link rel="stylesheet" href="ds/ensign/components/bundle.css">
+<script src="ds/ensign/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0176A1; } a:hover { color: #015C7F; }
+.sg-sec { display: flex; flex-direction: column; gap: 20px; }
+.sg-h { margin: 0; font-family: var(--font-display); font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.01em; color: var(--content-primary); }
+.sg-lead { margin: 0; max-width: 72ch; font-size: 15px; line-height: 22px; color: var(--content-secondary); }
+.sg-eyebrow { margin: 0; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--content-secondary); }
+.sg-sw { height: 64px; border-radius: 8px; display: flex; align-items: flex-end; padding: 6px 8px; box-sizing: border-box; }
+.sg-swl { font-size: 10px; line-height: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sg-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 8px; }
+.sg-card { background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-card); padding: 24px; }
+.sg-rule { height: 1px; background: var(--border-default); border: 0; margin: 0; }
+</style>
+</helmet>
+
+<div data-theme="admin" style="background: var(--surface-canvas); min-height: 100vh; font-family: var(--font-sans)">
+<div style="max-width: 1200px; margin: 0 auto; padding: 72px 48px 96px; display: flex; flex-direction: column; gap: 72px">
+
+  <header style="display: flex; flex-direction: column; gap: 16px">
+    <p class="sg-eyebrow">Design system</p>
+    <h1 style="margin: 0; font-family: var(--font-display); font-size: 64px; line-height: 62px; font-weight: 700; letter-spacing: -0.03em; color: var(--content-primary)">Ensign</h1>
+    <p class="sg-lead">Três cores, duas superfícies, um conjunto de tokens. Um app mobile escuro e imersivo e um painel administrativo claro e analítico, com os mesmos componentes e os mesmos nomes.</p>
+  </header>
+
+  <hr class="sg-rule">
+
+  <section class="sg-sec">
+    <h2 class="sg-h">O orçamento 60-30-10</h2>
+    <p class="sg-lead">É um orçamento, não um enfeite. Aperte os olhos: você deve ver um campo navy, algumas zonas quentes e calmas, e <strong>um</strong> ponto brilhante puxando o olhar.</p>
+    <div style="display: flex; height: 88px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-default)">
+      <div style="flex: 60; background: var(--surface-brand); display: flex; align-items: flex-end; padding: 12px">
+        <span style="font-size: 12px; font-weight: 700; color: var(--content-on-brand)">60% · Ensign Navy · #1B2340</span>
+      </div>
+      <div style="flex: 30; background: var(--surface-secondary); display: flex; align-items: flex-end; padding: 12px">
+        <span style="font-size: 12px; font-weight: 700; color: var(--content-on-secondary)">30% · Champagne Satin · #D8CBB0</span>
+      </div>
+      <div style="flex: 10; background: var(--surface-accent); display: flex; align-items: flex-end; padding: 12px">
+        <span style="font-size: 12px; font-weight: 700; color: var(--content-on-accent)">10% · #FFCF14</span>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+      <div class="sg-card">
+        <p class="sg-eyebrow">Os 60% são o chão</p>
+        <p class="sg-lead" style="margin-top: 8px">Navy no canvas do app, e na sidebar e topbar do admin — onde ele não inverte com o tema.</p>
+      </div>
+      <div class="sg-card">
+        <p class="sg-eyebrow">Os 30% são texto</p>
+        <p class="sg-lead" style="margin-top: 8px">A parte que quase toda implementação erra. Champagne cumpre seus 30% como texto secundário e borda, não como blocos bege.</p>
+      </div>
+      <div class="sg-card">
+        <p class="sg-eyebrow">Os 10% são escassos</p>
+        <p class="sg-lead" style="margin-top: 8px">Uma ação primária por região de tela. Dois botões amarelos competindo, e um deles está errado.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sg-rule">
+
+  <section class="sg-sec">
+    <h2 class="sg-h">Rampas primitivas</h2>
+    <p class="sg-lead">Geradas em OKLCH mantendo o matiz da base, com o croma no pico nos tons médios. Primitivos nunca entram no código do produto — lá se usa a camada semântica.</p>
+
+    <p class="sg-eyebrow">Navy — passos 800/900/950 são valores fixos da marca</p>
+    <div class="sg-row">
+      <div class="sg-sw" style="background: #F5F7FC"><span class="sg-swl" style="color: #1B2340">50</span></div>
+      <div class="sg-sw" style="background: #E9EDF7"><span class="sg-swl" style="color: #1B2340">100</span></div>
+      <div class="sg-sw" style="background: #D5DBED"><span class="sg-swl" style="color: #1B2340">200</span></div>
+      <div class="sg-sw" style="background: #BCC4DD"><span class="sg-swl" style="color: #1B2340">300</span></div>
+      <div class="sg-sw" style="background: #9EA8C7"><span class="sg-swl" style="color: #1B2340">400</span></div>
+      <div class="sg-sw" style="background: #818DAF"><span class="sg-swl" style="color: #1B2340">500</span></div>
+      <div class="sg-sw" style="background: #646F91"><span class="sg-swl" style="color: #FFFFFF">600</span></div>
+      <div class="sg-sw" style="background: #495475"><span class="sg-swl" style="color: #FFFFFF">700</span></div>
+      <div class="sg-sw" style="background: #263159"><span class="sg-swl" style="color: #FFFFFF">800</span></div>
+      <div class="sg-sw" style="background: #1B2340"><span class="sg-swl" style="color: #FFFFFF">900</span></div>
+      <div class="sg-sw" style="background: #12172B"><span class="sg-swl" style="color: #FFFFFF">950</span></div>
+      <div class="sg-sw" style="background: #0C122B"><span class="sg-swl" style="color: #FFFFFF">975</span></div>
+    </div>
+
+    <p class="sg-eyebrow">Champagne Satin — base no passo 200</p>
+    <div class="sg-row">
+      <div class="sg-sw" style="background: #F8F4EC"><span class="sg-swl" style="color: #1B2340">50</span></div>
+      <div class="sg-sw" style="background: #EAE3D4"><span class="sg-swl" style="color: #1B2340">100</span></div>
+      <div class="sg-sw" style="background: #D8CBB0"><span class="sg-swl" style="color: #1B2340">200</span></div>
+      <div class="sg-sw" style="background: #C3B597"><span class="sg-swl" style="color: #1B2340">300</span></div>
+      <div class="sg-sw" style="background: #AC9D7E"><span class="sg-swl" style="color: #1B2340">400</span></div>
+      <div class="sg-sw" style="background: #938566"><span class="sg-swl" style="color: #FFFFFF">500</span></div>
+      <div class="sg-sw" style="background: #796C51"><span class="sg-swl" style="color: #FFFFFF">600</span></div>
+      <div class="sg-sw" style="background: #5F543C"><span class="sg-swl" style="color: #FFFFFF">700</span></div>
+      <div class="sg-sw" style="background: #473D29"><span class="sg-swl" style="color: #FFFFFF">800</span></div>
+      <div class="sg-sw" style="background: #312919"><span class="sg-swl" style="color: #FFFFFF">900</span></div>
+      <div class="sg-sw" style="background: #1F190C"><span class="sg-swl" style="color: #FFFFFF">950</span></div>
+      <div></div>
+    </div>
+
+    <p class="sg-eyebrow">Sunflare Yellow — base no passo 500</p>
+    <div class="sg-row">
+      <div class="sg-sw" style="background: #FFFAEA"><span class="sg-swl" style="color: #1B2340">50</span></div>
+      <div class="sg-sw" style="background: #FFF2CC"><span class="sg-swl" style="color: #1B2340">100</span></div>
+      <div class="sg-sw" style="background: #FFE8A6"><span class="sg-swl" style="color: #1B2340">200</span></div>
+      <div class="sg-sw" style="background: #FFDE7A"><span class="sg-swl" style="color: #1B2340">300</span></div>
+      <div class="sg-sw" style="background: #FFD758"><span class="sg-swl" style="color: #1B2340">400</span></div>
+      <div class="sg-sw" style="background: #FFCF14"><span class="sg-swl" style="color: #1B2340">500</span></div>
+      <div class="sg-sw" style="background: #DCB209"><span class="sg-swl" style="color: #1B2340">600</span></div>
+      <div class="sg-sw" style="background: #B29002"><span class="sg-swl" style="color: #FFFFFF">700</span></div>
+      <div class="sg-sw" style="background: #876D08"><span class="sg-swl" style="color: #FFFFFF">800</span></div>
+      <div class="sg-sw" style="background: #614D05"><span class="sg-swl" style="color: #FFFFFF">900</span></div>
+      <div class="sg-sw" style="background: #423400"><span class="sg-swl" style="color: #FFFFFF">950</span></div>
+      <div></div>
+    </div>
+
+    <p class="sg-eyebrow">Sand — neutro quente derivado do Champagne, para as superfícies do admin</p>
+    <div class="sg-row">
+      <div class="sg-sw" style="background: #FEFDFB; border: 1px solid #E3E0D8"><span class="sg-swl" style="color: #1B2340">50</span></div>
+      <div class="sg-sw" style="background: #F7F5F0"><span class="sg-swl" style="color: #1B2340">100</span></div>
+      <div class="sg-sw" style="background: #EFEDE6"><span class="sg-swl" style="color: #1B2340">200</span></div>
+      <div class="sg-sw" style="background: #E3E0D8"><span class="sg-swl" style="color: #1B2340">300</span></div>
+      <div class="sg-sw" style="background: #D5D1C7"><span class="sg-swl" style="color: #1B2340">400</span></div>
+      <div class="sg-sw" style="background: #BFBAAF"><span class="sg-swl" style="color: #1B2340">500</span></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+  </section>
+
+  <hr class="sg-rule">
+
+  <section class="sg-sec">
+    <h2 class="sg-h">A regra dura</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+      <div class="sg-card" style="border-color: #A7DDB8; background: #E8F6EC">
+        <p class="sg-eyebrow" style="color: #088038">Certo · 10,42:1</p>
+        <div style="margin-top: 16px; background: var(--surface-accent); border-radius: var(--radius-button); padding: 14px 24px; display: inline-block">
+          <span style="font-size: 15px; font-weight: 600; color: var(--content-on-accent)">Começar treino</span>
+        </div>
+        <p class="sg-lead" style="margin-top: 16px; color: #1B2340"><code style="font-family: var(--font-mono); font-size: 13px">content-on-accent</code> é navy nos dois temas. O token existe para ninguém precisar lembrar da regra.</p>
+      </div>
+      <div class="sg-card" style="border-color: #F3B9B9; background: #FDECEC">
+        <p class="sg-eyebrow" style="color: #D3252D">Errado · 1,48:1</p>
+        <div aria-hidden="true" style="margin-top: 16px; background: #FFCF14; border-radius: 9999px; padding: 14px 24px; display: inline-block">
+          <span style="font-size: 15px; font-weight: 600; color: #FFFFFF">Começar treino</span>
+        </div>
+        <p class="sg-lead" style="margin-top: 16px; color: #1B2340">Branco sobre Sunflare mede <strong>1,48:1</strong> — ilegível, e o erro mais provável em um sistema com acento amarelo. O lint acusa.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sg-rule">
+
+  <section class="sg-sec">
+    <h2 class="sg-h">Escala tipográfica</h2>
+    <p class="sg-lead">Plus Jakarta Sans carrega a marca em tudo que é grande. Inter carrega cada linha de tabela, rótulo e marca de eixo. Dezenove estilos, seis grupos.</p>
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; align-items: baseline; gap: 24px"><code style="flex: 0 0 160px; font-family: var(--font-mono); font-size: 12px; color: var(--content-muted)">display-lg 32/38</code><span style="font-family: var(--font-display); font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.02em; color: var(--content-primary)">Treino de hoje</span></div>
+      <div style="display: flex; align-items: baseline; gap: 24px"><code style="flex: 0 0 160px; font-family: var(--font-mono); font-size: 12px; color: var(--content-muted)">h2 20/26</code><span style="font-family: var(--font-display); font-size: 20px; line-height: 26px; font-weight: 700; color: var(--content-primary)">Peito e tríceps</span></div>
+      <div style="display: flex; align-items: baseline; gap: 24px"><code style="flex: 0 0 160px; font-family: var(--font-mono); font-size: 12px; color: var(--content-muted)">body 15/22</code><span style="font-size: 15px; line-height: 22px; color: var(--content-primary)">Quatro séries de oito a dez repetições, com noventa segundos de descanso.</span></div>
+      <div style="display: flex; align-items: baseline; gap: 24px"><code style="flex: 0 0 160px; font-family: var(--font-mono); font-size: 12px; color: var(--content-muted)">body-sm 13/19</code><span style="font-size: 13px; line-height: 19px; color: var(--content-secondary)">Texto de apoio, metadado de lista, ajuda de formulário.</span></div>
+      <div style="display: flex; align-items: baseline; gap: 24px"><code style="flex: 0 0 160px; font-family: var(--font-mono); font-size: 12px; color: var(--content-muted)">overline 11/14</code><span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--content-secondary)">Adesão semanal</span></div>
+      <div style="display: flex; align-items: baseline; gap: 24px"><code style="flex: 0 0 160px; font-family: var(--font-mono); font-size: 12px; color: var(--content-muted)">metric-xl 32/36</code><span style="font-size: 32px; line-height: 36px; font-weight: 700; letter-spacing: -.01em; color: var(--content-primary)">1.248</span></div>
+      <div style="display: flex; align-items: baseline; gap: 24px"><code style="flex: 0 0 160px; font-family: var(--font-mono); font-size: 12px; color: var(--content-muted)">numeric 15/20 tab</code><span style="font-size: 15px; line-height: 20px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--content-primary)">82,4 kg · 1.180 kcal · 148 g</span></div>
+    </div>
+  </section>
+
+  <hr class="sg-rule">
+
+  <section class="sg-sec">
+    <h2 class="sg-h">Componentes, nos dois temas</h2>
+    <p class="sg-lead">Os mesmos componentes, os mesmos nomes. O que muda é o tema: o raio semântico, as superfícies e o texto. Tudo abaixo é o componente real do bundle, não uma imitação.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+
+      <div data-theme="app" style="background: var(--surface-canvas); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+        <p class="sg-eyebrow">Tema app — pílula, 60% navy</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <x-import component-from-global-scope="Ensign.Button" variant="primary" size="lg">Começar treino</x-import>
+          <x-import component-from-global-scope="Ensign.Button" variant="secondary" size="lg">Ver plano</x-import>
+          <x-import component-from-global-scope="Ensign.Button" variant="ghost" size="lg">Pular</x-import>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <x-import component-from-global-scope="Ensign.Badge" tone="active">Concluído</x-import>
+          <x-import component-from-global-scope="Ensign.Badge" tone="pending">Em andamento</x-import>
+          <x-import component-from-global-scope="Ensign.Badge" tone="canceled">Pulado</x-import>
+          <x-import component-from-global-scope="Ensign.Badge" tone="neutral">Rascunho</x-import>
+        </div>
+        <x-import component-from-global-scope="Ensign.Field" label="Carga" placeholder="Ex.: 42,5" help="Em quilos, por série."></x-import>
+        <x-import component-from-global-scope="Ensign.ListCard" title="Supino reto" meta="4 séries · 8-10 reps" value="42,5 kg" status="active" status-label="Feito"></x-import>
+        <x-import component-from-global-scope="Ensign.FeatureCard" title="Semana completa" body="Você fechou os 5 treinos. O próximo ciclo sobe a carga em 2,5 kg." cta="Ver próximo ciclo"></x-import>
+      </div>
+
+      <div data-theme="admin" style="background: var(--surface-canvas); border: 1px solid var(--border-default); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+        <p class="sg-eyebrow">Tema admin — 6px, denso</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <x-import component-from-global-scope="Ensign.Button" variant="primary" size="md" icon="plus">Novo aluno</x-import>
+          <x-import component-from-global-scope="Ensign.Button" variant="secondary" size="md">Exportar</x-import>
+          <x-import component-from-global-scope="Ensign.Button" variant="ghost" size="md">Filtros</x-import>
+          <x-import component-from-global-scope="Ensign.Button" variant="danger" size="md">Excluir</x-import>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <x-import component-from-global-scope="Ensign.Badge" tone="active">Ativo</x-import>
+          <x-import component-from-global-scope="Ensign.Badge" tone="pending">Avaliação pendente</x-import>
+          <x-import component-from-global-scope="Ensign.Badge" tone="canceled">Cancelado</x-import>
+          <x-import component-from-global-scope="Ensign.Badge" tone="neutral">Arquivado</x-import>
+        </div>
+        <x-import component-from-global-scope="Ensign.Field" label="E-mail do aluno" default-value="ariane@" error="Informe um e-mail válido."></x-import>
+        <x-import component-from-global-scope="Ensign.KPICard" label="Alunos ativos" value="248" delta="{{d}}" icon="user"></x-import>
+        <x-import component-from-global-scope="Ensign.Toast" tone="success" title="Plano publicado">Os 12 alunos do grupo já veem o novo treino.</x-import>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { yes: true, d: 6.2 };
+  }
+}
+</script>
+</body>
+</html>

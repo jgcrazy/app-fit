@@ -1,0 +1,31 @@
+<!-- @dsCard group="Dados" height=380 subtitle="Fileira de quatro, nos dois temas" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  var CARDS = [
+    { label: 'Pedidos hoje',  value: '1.248',       delta: 12.4,  icon: 'package' },
+    { label: 'Faturamento',   value: 'R$ 84.320',   delta: 3.1,   icon: 'chart' },
+    { label: 'Cancelamentos', value: '37',          delta: -4.2,  icon: 'x' },
+    { label: 'Ticket médio',  value: 'R$ 67,56',    delta: 0,     icon: 'list' },
+  ];
+
+  function Grupo(props) {
+    return h('div', { className: 'ens-demo ens-demo--canvas', 'data-theme': props.tema },
+      h('p', { className: 'ens-demo__cap' }, props.titulo),
+      h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-6)' } },
+        CARDS.map(function (c) { return h(E.KPICard, Object.assign({ key: c.label }, c)); })
+      )
+    );
+  }
+
+  function Demo() {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' } },
+      h(Grupo, { tema: 'admin', titulo: 'Tema admin' }),
+      h(Grupo, { tema: 'app', titulo: 'Tema app' })
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

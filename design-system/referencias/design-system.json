@@ -1,0 +1,34 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-23T03:59:32.162Z"
+ },
+ "title": "Ensign Design System",
+ "namespace": "Ensign",
+ "libraries": [
+  {
+   "name": "react",
+   "version": "18"
+  },
+  {
+   "name": "react-dom",
+   "version": "18"
+  }
+ ],
+ "sections": {},
+ "groups": [],
+ "assetGroups": {},
+ "blobs": {},
+ "docs": {
+  "readme": "project/README.md",
+  "sections": []
+ },
+ "lastChange": {
+  "by": "jG",
+  "at": "2026-11-23T04:39:31Z",
+  "via": "chat",
+  "note": "README: secao Consumindo — global window.Ensign, ordem de carregamento e as tres superficies"
+ }
+}

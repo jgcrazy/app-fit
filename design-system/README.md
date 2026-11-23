@@ -6,10 +6,13 @@ e tamanho. Ele é cópia exata do design system **Ensign**:
 **https://claude.ai/artifact/STGHQPzyBZcSHoPdGfCdTk**
 
 Lá ficam o brand book (9 seções), as medições de contraste e os 11 componentes
-com README, preview nos dois temas e tipos (`components/index.d.ts`). O Claude
-Code lê o artifact direto; este repositório guarda só o `tokens.json` e o que é
-gerado dele. Os READMEs de componente **não** são copiados para cá, para não
-existirem duas versões.
+com README, preview nos dois temas e tipos (`components/index.d.ts`).
+
+`referencias/` guarda uma **cópia de consulta** do pacote do Ensign — brand book,
+componentes, o canvas com as telas desenhadas do app-fit e o pacote original —
+para o Claude Code ler sem depender do artifact. Se um arquivo de `referencias/`
+divergir do artifact, **o artifact vale**. Nada em `referencias/` é código de
+produto: o lint ignora a pasta, e nada importa dela.
 
 O `components/bundle.js` do artifact é React web (DOM). O admin pode usá-lo; o
 app reescreve cada componente em React Native seguindo o README dele.
@@ -25,6 +28,11 @@ Yellow `#FFCF14`. **Texto branco nunca vai sobre o amarelo** (1,48:1): use
 design-system/
   tokens.json                 fonte da verdade — o único arquivo que se edita
   admin/                      referência para quando o painel existir (ver abaixo)
+  referencias/                cópia de consulta do pacote Ensign (o artifact vale)
+    README.md, 0*.md          brand book: cores, tipo, layout, movimento, gráficos, app, admin, guia
+    components/<Comp>/        README + preview de cada componente; bundle.js é React web
+    canvas/                   telas desenhadas: App-Hoje, App-Dieta, Admin-Alunos, Admin-Treinos
+    pacote/                   README, INSTALAR e configs do pacote original (pré-monorepo)
 scripts/
   build-design-system.mjs     gera os temas a partir de tokens.json
   lint-design-system.mjs      barra hex, primitivo, valor arbitrário, branco no amarelo…

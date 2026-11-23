@@ -1,0 +1,61 @@
+<!-- @dsCard group="Navegação" height=400 subtitle="Painel completo: sidebar navy, conteúdo off-white, um CTA" -->
+<div id="raiz"></div>
+<script>
+  var h = React.createElement;
+  var E = window.Ensign;
+
+  var ITENS = [
+    { key: 'visao',    icon: 'chart',   label: 'Visão geral' },
+    { key: 'pedidos',  icon: 'package', label: 'Pedidos' },
+    { key: 'clientes', icon: 'user',    label: 'Clientes' },
+    { key: 'catalogo', icon: 'list',    label: 'Catálogo' },
+  ];
+
+  var KPIS = [
+    { label: 'Pedidos hoje', value: '1.248',     delta: 12.4, icon: 'package' },
+    { label: 'Faturamento',  value: 'R$ 84.320', delta: 3.1,  icon: 'chart' },
+  ];
+
+  function Demo() {
+    return h('div', {
+      'data-theme': 'admin',
+      style: { display: 'flex', minHeight: '360px', background: 'var(--surface-canvas)' },
+    },
+      h(E.Sidebar, { items: ITENS, active: 'pedidos' }),
+      h('div', { style: { flex: '1 1 auto', minWidth: 0 } },
+        h('div', {
+          style: {
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            minHeight: '64px', padding: '0 var(--space-6)',
+            background: 'var(--surface-raised)',
+            borderBottom: '1px solid var(--border-default)',
+          },
+        },
+          h('span', { style: { font: '400 13px/19px var(--font-sans)', color: 'var(--content-secondary)' } },
+            'Painel / Pedidos'),
+          h(E.Button, { variant: 'primary', size: 'md', icon: 'plus' }, 'Novo pedido')
+        ),
+        h('div', { style: { padding: 'var(--space-6)', display: 'grid', gap: 'var(--space-6)' } },
+          h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)' } },
+            KPIS.map(function (k) { return h(E.KPICard, Object.assign({ key: k.label }, k)); })
+          ),
+          h(E.DataTable, {
+            footer: false,
+            columns: [
+              { key: 'pedido', label: 'Pedido' },
+              { key: 'cliente', label: 'Cliente' },
+              { key: 'total', label: 'Total', numeric: true },
+              { key: 'status', label: 'Status' },
+            ],
+            rows: [
+              { pedido: '#1042', cliente: 'Ariane Martins', total: 'R$ 128,90', status: 'pending' },
+              { pedido: '#1041', cliente: 'Marcos Vitor', total: 'R$ 42,00', status: 'active' },
+            ],
+          })
+        )
+      )
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('raiz')).render(h(Demo));
+</script>

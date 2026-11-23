@@ -9,6 +9,11 @@ Design system **Ensign**: https://claude.ai/artifact/STGHQPzyBZcSHoPdGfCdTk
 Resumo de instalação e manutenção no repo:
 [`design-system/README.md`](../../design-system/README.md).
 
+Cópia de consulta local em `design-system/referencias/` (o artifact vale se
+divergir). **Antes de montar uma tela, abra o desenho dela em
+`design-system/referencias/canvas/`** (`App-Hoje`, `App-Dieta`): a tela real
+segue o canvas, montada só com componentes de `src/shared/ui/`.
+
 ## Componentes: o artifact é a especificação, não o código
 
 O `components/bundle.js` do artifact é React **web** (DOM, React 18) e não roda
@@ -22,7 +27,8 @@ Toast. KPICard, DataTable e Sidebar são do admin.
 
 - Expo (React Native) + Expo Router
 - NativeWind v4 para estilo, Reanimated + Gesture Handler para movimento
-- Ícones: `lucide-react-native` (entra na Fase 1; o template ainda usa `expo-symbols`)
+- Ícones: `lucide-react-native` via `src/shared/ui/Icon.tsx` (nomes do Ensign:
+  `home`, `plus`, `bell`…). O template ainda usa `expo-symbols` no Collapsible.
 - Design system: **Ensign**, tema `app` (escuro). O app não tem tema claro.
 
 ## Fonte da verdade
@@ -91,6 +97,9 @@ erro com próximo passo, número formatado.
   vezes por tela**. Texto sobre ele é `content-on-secondary` (navy).
 - Tab bar: no máximo 4 itens, `surface-deep`, ativo em `content-accent`, inativo
   em `content-secondary`. **O rótulo nunca desaparece.**
+  **Decisão (nov/2026): fica a tab bar NATIVA** (`NativeTabs`, `src/components/app-tabs.tsx`).
+  Ela não desenha o indicador `border-accent` de 3px do BottomTabBar do Ensign; o
+  ativo é marcado só pela cor do ícone e do rótulo. Não recrie a barra em JS.
 - AppHeader: 56px, `surface-brand`, título `text-h2` + `text-content-on-brand`.
 - Elevação no escuro é **passo de superfície + borda de 1px**, não sombra.
 - `placeholderTextColor={cor['content-muted']}` — passa 4,5:1 sobre `surface-input`.
