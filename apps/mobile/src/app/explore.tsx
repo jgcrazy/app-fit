@@ -6,6 +6,7 @@ import { Collapsible } from '@/components/ui/collapsible';
 import { paddingInferiorTela, px } from '@/shared/theme/layout';
 import { escalas } from '@/shared/theme/tokens';
 import { Button } from '@/shared/ui/Button';
+import { IconButton } from '@/shared/ui/IconButton';
 
 /**
  * Catálogo de desenvolvimento: mostra variantes lado a lado, então é a única
@@ -30,6 +31,12 @@ function CatalogoButton() {
       <View className="flex-row flex-wrap gap-3">
         <Button loading>Salvando</Button>
         <Button disabled>Desabilitado</Button>
+      </View>
+      <View className="flex-row flex-wrap items-center gap-2">
+        <IconButton name="chevron-left" label="Voltar" />
+        <IconButton name="bell" label="Notificações" />
+        <IconButton name="plus" label="Adicionar" size={16} />
+        <IconButton name="dots" label="Mais opções" disabled />
       </View>
     </View>
   );
@@ -77,7 +84,7 @@ export default function ExplorarScreen() {
             </Text>
           </Collapsible>
 
-          <Collapsible titulo="Componentes: Button">
+          <Collapsible titulo="Componentes: Button e IconButton">
             <CatalogoButton />
           </Collapsible>
 

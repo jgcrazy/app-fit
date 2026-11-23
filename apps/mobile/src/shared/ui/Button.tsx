@@ -1,17 +1,11 @@
-import { useState } from 'react';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useReducedMotion,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
-import { ANEL_FOCO, px } from '@/shared/theme/layout';
-import { curva, duracao } from '@/shared/theme/movimento';
+import { px } from '@/shared/theme/layout';
 import { cor, escalas, type TokenCor } from '@/shared/theme/tokens';
 
 import { Icon, type NomeIcone } from './Icon';
+import { AnelDeFoco, useInteracao } from './interacao';
 
 /**
  * Button do Ensign, em React Native.
@@ -95,20 +89,12 @@ export function Button({
   onPress,
   accessibilityHint,
 }: ButtonProps) {
-  const [focado, setFocado] = useState(false);
-  const reduzirMovimento = useReducedMotion();
-  const escala = useSharedValue(1);
-  const estiloEscala = useAnimatedStyle(() => ({ transform: [{ scale: escala.get() }] }));
+  const { focado, estiloEscala, handlers } = useInteracao();
 
   const inativo = disabled || loading;
   const { classe, altura, icone } = TAMANHO[size];
   // sm e md ficam abaixo de 44px: o alvo cresce, o visual não.
   const folga = Math.max(0, (ALVO_MINIMO - altura) / 2);
-
-  const pressionar = (valor: number) => {
-    if (reduzirMovimento) return; // movimento reduzido: sai o scale, fica a cor
-    escala.set(withTiming(valor, { duration: duracao('duration-fast'), easing: curva('ease-standard') }));
-  };
 
   return (
     <Pressable
@@ -121,10 +107,7 @@ export function Button({
       disabled={inativo}
       hitSlop={{ top: folga, bottom: folga }}
       onPress={onPress}
-      onPressIn={() => pressionar(0.97)}
-      onPressOut={() => pressionar(1)}
-      onFocus={() => setFocado(true)}
-      onBlur={() => setFocado(false)}
+      {...handlers}
       // Só o desabilitado esmaece. Em loading o botão continua inteiro: o spinner é o estado.
       className={disabled && !loading ? 'self-start opacity-disabled' : 'self-start'}>
       {({ pressed, hovered }: { pressed: boolean; hovered?: boolean }) => {
@@ -149,29 +132,5 @@ export function Button({
         );
       }}
     </Pressable>
-  );
-}
-
-/** Dois anéis: Sunflare por dentro, contorno escuro por fora. Foco não anima. */
-function AnelDeFoco() {
-  return (
-    <>
-      <View
-        pointerEvents="none"
-        className="absolute rounded-button border-border-focus"
-        style={{ top: -ANEL_FOCO, bottom: -ANEL_FOCO, left: -ANEL_FOCO, right: -ANEL_FOCO, borderWidth: ANEL_FOCO }}
-      />
-      <View
-        pointerEvents="none"
-        className="absolute rounded-button border-border-focus-outline"
-        style={{
-          top: -2 * ANEL_FOCO,
-          bottom: -2 * ANEL_FOCO,
-          left: -2 * ANEL_FOCO,
-          right: -2 * ANEL_FOCO,
-          borderWidth: ANEL_FOCO,
-        }}
-      />
-    </>
   );
 }
