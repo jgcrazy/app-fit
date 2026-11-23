@@ -8,13 +8,15 @@ jest.mock('react-native-reanimated', () => {
   const { View, Text } = require('react-native');
   const Animated = { View, Text, createAnimatedComponent: (c) => c };
   const identidade = (t) => t;
-  const entrada = { duration: () => entrada, delay: () => entrada };
+  const entrada = { duration: () => entrada, delay: () => entrada, easing: () => entrada };
   return {
     __esModule: true,
     default: Animated,
     ...Animated,
     Easing: { bezier: () => identidade, linear: identidade },
     FadeIn: entrada,
+    FadeInDown: entrada,
+    FadeOutUp: entrada,
     useSharedValue: (inicial) => {
       let valor = inicial;
       return { get: () => valor, set: (novo) => (valor = novo), value: inicial };
