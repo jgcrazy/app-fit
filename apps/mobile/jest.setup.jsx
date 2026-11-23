@@ -47,3 +47,6 @@ jest.mock('@expo/ui/community/menu', () => {
     ),
   };
 });
+
+// Safe area: o mock oficial devolve insets zerados (sem provider na árvore).
+jest.mock('react-native-safe-area-context', () => require('react-native-safe-area-context/jest/mock').default);
